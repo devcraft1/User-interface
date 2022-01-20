@@ -1,0 +1,56 @@
+import Card from "../Card/Card";
+import Header from "../Main/Header";
+import Sidebar from "../Main/Sidebar";
+import Bottom from "../Main/Bottom";
+import { useMoralis } from "react-moralis"
+
+
+function Collection() {
+
+    const { user } = useMoralis();
+
+    // const username = user.getUsername() ;
+    // const walletAddress = user.get("ethAddress");
+
+    function handleClick() {
+        navigator.clipboard.writeText(walletAddress);
+}
+    return (
+
+<div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden"> 
+      
+        <Header />
+      <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>
+        <Sidebar />
+
+
+        <div className="flex flex-col items-center p-12 mx-auto">
+
+
+            {/* <section className={`flex items-end space-x-7 bg-gradient-to-l to-black ${color} h-40 border-b text-white padding-8`}> */}
+            <section className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b text-white padding-4 mb-8`}>
+                <h1 className="text-lg mb-8">User Collection</h1>
+            </section>
+    
+
+        <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
+            <Card />    
+            <Card />    
+            <Card />    
+          
+        </div>
+        
+        {/* <Bottom/>     */}
+        {/* <div className="m-12 flex flex-col text-black">
+            Collection</div> */}
+
+            <Bottom />
+        </div>
+        </main>
+
+            </div>
+
+    )
+}
+
+export default Collection
