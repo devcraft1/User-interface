@@ -6,6 +6,7 @@ import CollectionButton from "../../components/Main/Buttons/CollectionButton"
 import MintpageButton from "../../components/Main/Buttons/MintpageButton"
 import StakingpageButton from "../../components/Main/Buttons/StakingpageButton"
 import SwappageButton from "../../components/Main/Buttons/SwappageButton"
+import LogoutButton from "../../components/Main/Buttons/LogoutButton"
 
 
 export default function Sidebar() {
@@ -35,12 +36,12 @@ export default function Sidebar() {
                     <HomeIcon className="h-5 w-5 "/>
                     <p>Home</p>
                 </button> */}
-                <button className="flex items-center space-x-2 hover:text-white">
+                <button className="flex items-center space-x-2 hover:text-white active:text-teal-300">
                     <LibraryIcon className="h-5 w-5 "/>
                     <p onClick={openMarketplace}>Market</p>
                 </button>
 
-                <button className="flex items-center space-x-2 hover:text-white">
+                <button className="flex items-center space-x-2 hover:text-white active:text-teal-300">
                     <UserCircleIcon className="h-5 w-5 "/>
                     <p onClick={openProfile}>Profile</p>
                 </button>
@@ -63,12 +64,14 @@ export default function Sidebar() {
 
                 <hr className="border-t-[0.1px] border-teal-300"/>
 
-                <button 
+                {/* <button 
                     onClick={logout}
-                    className="flex items-center space-x-2 hover:text-white">
+                    className="flex items-center space-x-2 hover:text-white active:text-teal-300">
                     <LogoutIcon className="h-5 w-5"/>
                     <p>Logout</p>
-                </button>
+                </button> */}
+
+                <LogoutButton />
 
             </div>
         </div>
