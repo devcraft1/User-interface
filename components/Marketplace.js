@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Card from "./Card/Card";
 import Bottom from "./Main/Bottom";
-import { tokenDetails } from "../contracts/TokenContract";
+import tokenDetails from "../contracts/TokenContract";
+import marketplaceDetails from "../contracts/MarketplaceContract";
 
-const { TokenABI, tokenAddress } = tokenDetails;
+const { MarketplaceABI, marketplaceAddress } = marketplaceDetails;
+const { TokenABI, TokenAddress } = tokenDetails;
 
-console.log(TokenABI);
+console.log(MarketplaceABI, TokenABI);
 
 function Marketplace() {
   return (
