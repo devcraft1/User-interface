@@ -12,7 +12,9 @@ function ChangeUsername() {
         })
     }
 
-    const { setUserData, isUserUpdating, useError, user } = useMoralis();
+    const { setUserData, isUserUpdating, user } = useMoralis();
+
+
     return (
         <div className="flex flex-col text-xs relative  w-24 lg:mx-auto">
             <button 

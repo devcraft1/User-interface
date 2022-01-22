@@ -1,27 +1,35 @@
 import ChangeUsername from "./ChangeUsername"
-import { CollectionIcon, PlusCircleIcon, LightningBoltIcon } from "@heroicons/react/outline"
 import CollectionButton from "../Main/Buttons/CollectionButton"
 import MintpageButton from "../Main/Buttons/MintpageButton";
 import StakingpageButton from "../Main/Buttons/StakingpageButton"
-
-
+import Modal from "./Modal";
+import { useState } from "react";
+import Userinfo from "./Userinfo"
 
 function Profile() {
-            // FIX USER ID PROP WITH MORALIS
 
+    const [ editModal, setEditModal ] = useState(false);
 
-// Button functions
-    function openMintpage() { 
-        router.push(`/minter/`);
+    function handleClick() {
+        setEditModal(true);
     }
-  
+
    
     return (
         <div className="w-full">
         <div className="flex flex-col right-0 border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl px-2">
-                <div className="py-2 mb-6 flex flex-col items-center">
-                    <ChangeUsername />  
+                <div className="py-2 mb-6 flex flex-col items-center"
+                    onClick={handleClick}>
+                    {!editModal && <ChangeUsername /> }
                 </div>
+                <div className="flex flex-col">
+                    {editModal && <Modal />}
+                </div>
+                <div className="flex flex-col">
+                    {!editModal && <Userinfo setEditModal = {setEditModal} />}
+                    
+                </div>
+
                     <hr className="border-t-[0.1px] border-teal-300"/>
                         <div className="flex flex-row justify-between py-2 ">
                             <div className="w-48  text-white flex flex-col items-center">

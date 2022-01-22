@@ -11,9 +11,10 @@ function StakingpageButton() {
     }
 
     return(
-        <button className="flex items-center space-x-2 hover:text-white active:text-teal-300">
+        <button className="flex items-center space-x-2 hover:text-white active:text-teal-300"
+                onClick={openStaking}>
                     <LightningBoltIcon className="h-5 w-5 "/>
-                    <p onClick={openStaking}>Staking</p>
+                    <p >Staking</p>
         </button>
     )
 }

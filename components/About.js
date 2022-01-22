@@ -1,3 +1,5 @@
+import { ByMoralis } from "react-moralis"
+
 function About() {
     return (
 
@@ -7,11 +9,12 @@ function About() {
             </div>
                 {/* <p>Explain Avasound</p> */}
             <div>
-            <p>Hackathon Team</p>
-            </div>
+            {/* <p>Hackathon Team</p> */}
                 <div className="p-8 text-white">
                 <p>Moralis x Avalanche Hackathon 2021/22</p>
+                </div>
             </div>
+            <div className="my-2"> <ByMoralis variant="dark" style={{marginLeft:"auto", marginRight:"auto"}}/></div>
         </div>
     )
 }

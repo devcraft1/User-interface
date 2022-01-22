@@ -1,4 +1,5 @@
 import { ArrowCircleRightIcon, ArrowCircleLeftIcon } from "@heroicons/react/outline"
+import { ByMoralis } from "react-moralis"
 
 function Bottom() {
     return (
@@ -13,7 +14,9 @@ function Bottom() {
                         <ArrowCircleRightIcon className="h-5 w-5 hover:text-white cursor-pointer"/>
                 </div>
             </div>
+
         </section>
+            <div className="py-8"> <ByMoralis variant="dark" style={{marginLeft:"auto", marginRight:"auto"}}/></div>
         </div>
     )
 }

@@ -16,9 +16,10 @@ function LogoutButton() {
     }
 
     return(
-        <button className="flex items-center space-x-2 hover:text-white active:text-teal-300">
+        <button className="flex items-center space-x-2 hover:text-white active:text-teal-300"
+        onClick={userLogout} >
                     <LogoutIcon className="h-5 w-5 "/>
-                    <p onClick={userLogout}>Logout</p>
+                    <p >Logout</p>
         </button>
     )
 }

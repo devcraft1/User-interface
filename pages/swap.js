@@ -1,6 +1,9 @@
 import Header from "../components/Main/Header"
 import Sidebar from "../components/Main/Sidebar"
 import SwapPage from "../components/Swap/SwapPage"
+import ERC20Balance from "../components/MoralisComp/ERC20Balance"
+import ERC20Balances from "../hooks/useERC20Balances"
+
 
 function swap() {
     return (
@@ -11,11 +14,13 @@ function swap() {
         <div className="flex flex-col items-center mx-auto w-full">
             <section className={`sticky flex flex-col justify-center items-center mb-6 bg-transparent mt-8 w-auto text-white`}>
                 <div className="flex justify-center items-center mb-4">
-                    <h1>SWAP ASSETS</h1>
+                    {/* <h1>SWAP ASSETS</h1> */}
         </div>
             </section> 
             <div className="w-6/12">
             <SwapPage />
+            <ERC20Balance />
+            <ERC20Balances />
             </div>
                 </div>
             </main>

@@ -12,13 +12,9 @@ export default function Home() {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
 
   useEffect(() => {
-    const connectorId = window.localStorage.getItem("connectorId");
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
-    // if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3({ provider: connectorId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
-  
-
 
 
   if(!isAuthenticated) return <Login />;
@@ -26,18 +22,14 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden"> 
       <Head>
-        <title>Metaverse Challenge</title>
+        <title>AVASOUND</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Header />
       <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>
         <Sidebar />
         <Main />
-        </main>
+      </main>
     </div>
   )
 }
-
-
-
-// overflow-auto scrollbar-hide for head div

@@ -1,8 +1,12 @@
 import Collection from "../../components/Collection/Collection"
 
 function Usercollection() {
+
+
+
+
     return (
-        <div>
+        <div >
             <Collection />
         </div>
     )
