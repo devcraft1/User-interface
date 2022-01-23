@@ -9,9 +9,13 @@ function About() {
           Decentralized Music Marketplace
         </h1>
       </div>
-      {/* <p>Explain Avasound</p> */}
+      <p className="border-b-2 border-teal-300 mb-2 mt-2">
+        A one stop music distribution service on avalanche.
+      </p>
+      <p className="border-b-2 border-teal-300 mb-2 mt-2">
+        For record labels, musicians and fans alike.
+      </p>
       <div>
-        {/* <p>Hackathon Team</p> */}
         <div className="p-8 text-white">
           <p>Moralis x Avalanche Hackathon 2021/22</p>
         </div>

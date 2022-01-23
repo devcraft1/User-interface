@@ -11,19 +11,11 @@ function Login() {
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center">
-        <div className="mt-40">
+        <div className="mt-24">
           <h1 className="text-5xl my-10 text-white">A V A S O U N D</h1>
         </div>
-
-        <div>{/* <p>A decentralized music marketplace.</p> */}</div>
-
-        {/* <div
-          className="text-sm my-20 text-black bg-blue-300 rounded-full py-3 px-4 
-                            hover:shadow-xl active:text-white 
-                            active:border-b-2 active:border-blue-300 active:bg-blue-700"
-        > */}
         <div
-          className="text-sm my-20 text-black bg-teal-300 rounded-full py-3 px-4 
+          className="text-sm my-12 text-black bg-teal-300 rounded-full py-3 px-4 
                             hover:shadow-xl active:text-white 
                             active:border-b-2 active:border-teal-300 active:bg-teal-700"
         >
