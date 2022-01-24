@@ -3,7 +3,7 @@ import {
   ArrowCircleLeftIcon,
 } from "@heroicons/react/outline";
 import { ByMoralis } from "react-moralis";
-
+import Image from "next/image";
 function Bottom() {
   return (
     <div>
@@ -20,11 +20,18 @@ function Bottom() {
                 </div> */}
         </div>
       </section>
-      <div className="py-8">
+      <div className="my-2 flex flex-row justify-center">
         {" "}
+        <Image
+          width={115}
+          height={50}
+          src="/avax2.png"
+          alt="Item"
+          className="rounded-full"
+        />
         <ByMoralis
           variant="dark"
-          style={{ marginLeft: "auto", marginRight: "auto" }}
+          // style={{ marginLeft: "auto", marginRight: "auto" }}
         />
       </div>
     </div>

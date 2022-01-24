@@ -1,4 +1,5 @@
 import { ByMoralis } from "react-moralis";
+import Image from "next/image";
 
 function About() {
   return (
@@ -20,8 +21,15 @@ function About() {
           <p>Moralis x Avalanche Hackathon 2021/22</p>
         </div>
       </div>
-      <div className="my-2">
+      <div className="my-2 flex flex-row">
         {" "}
+        <Image
+          width={115}
+          height={50}
+          src="/avax2.png"
+          alt="Item"
+          className="rounded-full"
+        />
         <ByMoralis
           variant="dark"
           style={{ marginLeft: "auto", marginRight: "auto" }}
