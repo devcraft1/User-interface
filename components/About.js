@@ -23,16 +23,16 @@ function About() {
       </div>
       <div className="my-2 flex flex-row">
         {" "}
+        <ByMoralis
+          variant="dark"
+          style={{ marginLeft: "auto", marginRight: "auto" }}
+        />
         <Image
           width={115}
           height={50}
           src="/avax2.png"
           alt="Item"
           className="rounded-full"
-        />
-        <ByMoralis
-          variant="dark"
-          style={{ marginLeft: "auto", marginRight: "auto" }}
         />
       </div>
     </div>

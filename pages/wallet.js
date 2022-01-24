@@ -6,8 +6,19 @@ import ERC20Balances from "../hooks/useERC20Balances";
 import NativeBalance from "../components/MoralisComp/NativeBalance";
 import Head from "next/head";
 import Bottom from "../components/Main/Bottom";
+import { useMoralis } from "react-moralis";
+import { useEffect } from "react";
 
 function swap() {
+  // const { isAuthenticated } = useMoralis;
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
+    useMoralis();
+
+  useEffect(() => {
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isWeb3Enabled]);
+
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
       <Head>
@@ -35,7 +46,6 @@ function swap() {
             </div>
           </section>
           <div className="w-6/12">
-            {/* <ERC20Balance /> */}
             {/* <SwapPage /> */}
             <Bottom />
           </div>

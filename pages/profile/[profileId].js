@@ -4,6 +4,7 @@ import Header from "../../components/Main/Header";
 import { BadgeCheckIcon, DuplicateIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Head from "next/head";
+import { useEffect } from "react";
 
 import { useRouter } from "next/router";
 import Avatar from "../../components/Profile/Avatar";
@@ -12,8 +13,14 @@ import { useMoralis } from "react-moralis";
 //  import Hooks from Moralis to get Picture, Address, Username & Collection items
 
 function Userprofile() {
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
+    useMoralis();
+
+  useEffect(() => {
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isWeb3Enabled]);
   const router = useRouter();
-  const { isAuthenticated, isInitialized } = useMoralis();
   const { user } = useMoralis();
 
   const walletAddress = user ? user.get("ethAddress") : "";
