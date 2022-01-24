@@ -50,8 +50,9 @@ function Mintpage() {
     const imageURI = imageFile.ipfs();
     const metadata = {
       name: document.getElementById("metadataRecordName").value,
-      description: document.getElementById("metadataDescription").value,
+      description: document.getElementById("metadataRecordDescription").value, // including artist name, and 1-4 song titles (array?)
       image: imageURI,
+      files: document.getElementById("metadataZIP"), // this needs to be encrypted so only holders of the specific token can access & download the files.
     };
 
     const metadataFile = new Moralis.File("metadata.json", {
