@@ -4,10 +4,17 @@ import SwapPage from "../components/Swap/SwapPage";
 import ERC20Balance from "../components/MoralisComp/ERC20Balance";
 import ERC20Balances from "../hooks/useERC20Balances";
 import NativeBalance from "../components/MoralisComp/NativeBalance";
+import Head from "next/head";
+import Bottom from "../components/Main/Bottom";
 
 function swap() {
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
+      <Head>
+        <title>AVAS Wallet</title>
+        <link rel="icon" href="/Avax_logo.png" />
+      </Head>
+
       <Header />
       <main className="flex relative overflow-y-scroll h-screen scrollbar-hide overflow-hidden">
         <Sidebar />
@@ -22,14 +29,15 @@ function swap() {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <NativeBalance />
+                  <ERC20Balances />
                 </div>
               </div>
             </div>
           </section>
           <div className="w-6/12">
-            <SwapPage />
-            <ERC20Balances />
             {/* <ERC20Balance /> */}
+            {/* <SwapPage /> */}
+            <Bottom />
           </div>
         </div>
       </main>

@@ -1,7 +1,7 @@
 import ChangeUsername from "./ChangeUsername";
 import CollectionButton from "../Main/Buttons/CollectionButton";
 import MintpageButton from "../Main/Buttons/MintpageButton";
-import StakingpageButton from "../Main/Buttons/StakingpageButton";
+import SwappageButton from "../Main/Buttons/SwappageButton";
 import Modal from "./Modal";
 import { useState } from "react";
 import Userinfo from "./Userinfo";
@@ -42,7 +42,7 @@ function Profile() {
             <CollectionButton />
           </div>
           <div className="w-48 text-white flex flex-col items-center">
-            <StakingpageButton />
+            <SwappageButton />
           </div>
         </div>
       </div>

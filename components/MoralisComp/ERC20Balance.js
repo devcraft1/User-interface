@@ -49,8 +49,6 @@ function ERC20Balance(props) {
 
   return (
     <div style={{ width: "65vw", padding: "15px" }}>
-      <h1>Wallet Balance</h1>
-
       <Skeleton loading={!assets}>
         <Table
           dataSource={assets}
