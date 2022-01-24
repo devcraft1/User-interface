@@ -1,68 +1,103 @@
-import { useEffect } from "react";
-// import Moralis from "moralis/types"; -- says module not found
+import GeneralInputs from "./GeneralInputs";
+import TokenInputs from "./TokenInputs";
+import SongName from "./SongName";
+// import Web3 from "web3";
+import { useMoralisFile, useMoralis } from "react-moralis";
 
 function Mintpage() {
-  // use effect needs to be fixed
+  const { saveFile } = useMoralisFile();
+  const { Moralis, account } = useMoralis();
 
-  // useEffect(() => {
-  //   if (!chainId) return null;
-  //   // AVAX CHAIN ID below
-  //   if (chainId === "0xa86a") {
-  //     setNftContractAddress("insert address here");
-  //     console.log("contract address changed");
-  //   } else if (chainId === "0x61") {
-  //     setNftContractAddress("insert address here");
-  //     console.log("contract address has been changed");
-  //   } else if (chainId === "0x13881") {
-  //     setNftContractAddress("insert addy");
-  //     console.log("contract addy changed");
-  //   }
-  // }, [chainId]);
+  let nftContractAddress = "0x351bbee7C6E9268A1BF741B098448477E08A0a53";
 
-  const createRecord = async () => {
-    // STORING COVER ARTWORK
-    const fileInput = document.getElementById("coverArtwork");
-    const data = fileInput.files[0];
-    const imageFile = new Moralis.File(data.name, data);
-    await imageFile.saveIPFS();
+  async function saveFileToIPFS(file, filename) {
+    await saveFile(filename, file, { saveIPFS: true }).then(async (hash) => {
+      console.log(hash);
+      return hash._ipfs;
+      //   ipfsCover = hash._ipfs;
+    });
+  }
 
-    // storing Metadata
+  // Take input from the user and create a new record
+  async function createRecord() {
+    // Get the values from the inputs
+    const recordTitle = document.getElementById("recordTitle").value;
+    const recordArtist = document.getElementById("recordArtist").value;
+    const recordCover = document.getElementById("recordCover").files[0];
+    const recordCount = document.getElementById("recordCount").value;
+    const recordPrice = document.getElementById("recordPrice").value;
+    const recordFiles = document.getElementById("recordFiles").files[0];
 
-    const imageURI = imageFile.ipfs();
+    // upload the cover art to ipfs
+    // let ipfsCover = async () => {
+    //   await saveFileToIPFS(recordCover, "cover");
+    // };
+    // console.log("almost there");
+    // let ipfsFiles = async () => {
+    //   await saveFileToIPFS(recordFiles, "files");
+    // };
+    let ipfsCover = "";
+    let ipfsFiles = "";
+    if (recordCover) {
+      console.log("uploading");
+      await saveFile("cover", recordCover, { saveIPFS: true }).then(
+        async (hash) => {
+          console.log(hash);
+          ipfsCover = hash._ipfs;
+        }
+      );
+      console.log("almost there");
+    }
+
+    if (recordFiles) {
+      await saveFile("recordFiles", recordFiles, { saveIPFS: true }).then(
+        async (hash) => {
+          console.log(hash);
+          ipfsFiles = hash._ipfs;
+        }
+      );
+      console.log("done uploading");
+    }
+
+    // const metadata = {
+    //   title: recordTitle,
+    //   artist: recordArtist,
+    //   cover: ipfsCover,
+    //   count: recordCount,
+    //   price: recordPrice,
+    //   files: ipfsFiles,
+    // };
     const metadata = {
-      name: document.getElementById("metadataRecordName").value,
-      description: document.getElementById(
-        "metadataArtistName",
-        "metadataSongTitle1",
-        "metadataSongTitle2",
-        "metadataSongTitle3",
-        "metadataSongTitle4"
-      ).value, // description includes Artistname & up to 4 song titles. May be better to split up?! requires at least artist name + 1 songtitle
-      image: imageURI,
-      file: document.getElementById("metadataTrackZIP"), // ZIP includes MP3&WAV of Song Titles - has to be encrypted so only tokenholders will be able to view & download
+      name: recordTitle,
+      image: ipfsCover,
+      description: {
+        artist: recordArtist,
+        count: recordCount,
+        price: recordPrice,
+        files: ipfsFiles,
+      },
     };
 
+    console.log(metadata);
     const metadataFile = new Moralis.File("metadata.json", {
       base64: btoa(JSON.stringify(metadata)),
     });
     await metadataFile.saveIPFS();
     const metadataURI = metadataFile.ipfs();
     console.log(metadataURI);
-    alert("Upload successfull");
+    alert("Upload successful");
 
     // minting
 
-    const txt = await mintToken(metadataURI).then((result) => {
-      console.log(result);
-      alert("Token minted");
-    });
-  };
+    // use the metadata URI to mint a new record
+    // write the smart contract which takes in the metadata URI
+    // and call it after the upload is successful
+  }
 
-  //Walkthrough
-  // Record Title
-  // Description - taking a minimum of 2 values (artistName & at least one SongTitle!) to up to 5 values (artist Name & 4x Songtitles)
-  // Image - Cover Artwork
-  // metadataTrackZIP -  a ZIP file including WAV & MP3 song files - this has to be encrypted!
+  async function createAlbum(e) {
+    e.preventDefault();
+    alert("successfully minted");
+  }
 
   return (
     <div className="flex w-full flex-col justify-center">
@@ -79,8 +114,8 @@ function Mintpage() {
 
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
-                  name="metadataRecordName"
-                  id="metadataRecordName"
+                  name="recordTitle"
+                  id="recordTitle"
                   type="text"
                   placeholder="Record Title"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
@@ -88,8 +123,8 @@ function Mintpage() {
               </div>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
-                  name="1"
-                  id="metadataArtistName"
+                  name="recordArtist"
+                  id="recordArtist"
                   type="text"
                   placeholder="Artist Name"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
@@ -99,8 +134,8 @@ function Mintpage() {
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
                   type="file"
-                  name="coverArtwork"
-                  id="coverArtwork"
+                  name="recordCover"
+                  id="recordCover"
                   placeholder="Cover Art"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
@@ -112,16 +147,16 @@ function Mintpage() {
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
                   type="n"
-                  name="blockchainDataRecordAmount"
-                  id="blockchainDataRecordAmount"
+                  name="recordCount"
+                  id="recordCount"
                   placeholder="Number of Records"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
-                  name="blockchainDataPricePerToken"
-                  id="blockchainDataPricePerToken"
+                  name="recordPrice"
+                  id="recordPrice"
                   type="n"
                   placeholder="Price in AVAX/USDC"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
@@ -130,8 +165,8 @@ function Mintpage() {
               <p>Upload MP3 & WAV files (ZIP)</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
-                  name="metadataTrackZIP"
-                  id="metadataTrackZIP"
+                  name="recordFiles"
+                  id="recordFiles"
                   type="file"
                   placeholder="Cover Art"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
@@ -142,6 +177,8 @@ function Mintpage() {
           <div className="flex flex-col w-11/12 py-2 border-b"></div>
 
           {/* SONG TITLE INPUTS BELOW */}
+
+          {/* not yet functional with IPFS inputs */}
 
           <div className="flex flex-col w-6/12 items-center justify-around">
             <p className="mt-2 mb-2">Tracks included in this record</p>
