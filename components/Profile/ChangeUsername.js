@@ -19,7 +19,7 @@ function ChangeUsername() {
         className="text-sm text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
                 active:text-white active:border-b active:border-teal-300 active:bg-teal-700"
         disabled={isUserUpdating}
-        onClick={setUsername}
+        // onClick={setUsername}
       >
         Edit User
       </button>

@@ -59,14 +59,6 @@ function Mintpage() {
       console.log("done uploading");
     }
 
-    // const metadata = {
-    //   title: recordTitle,
-    //   artist: recordArtist,
-    //   cover: ipfsCover,
-    //   count: recordCount,
-    //   price: recordPrice,
-    //   files: ipfsFiles,
-    // };
     const metadata = {
       name: recordTitle,
       image: ipfsCover,
