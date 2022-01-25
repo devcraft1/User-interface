@@ -1,7 +1,5 @@
 TO DO LIST
 
-Modal on Wallet / Swap
-
 useState for Liking Items in marketplace
 -> create like list on userprofile
 

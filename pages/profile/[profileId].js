@@ -25,7 +25,7 @@ function Userprofile() {
 
   const walletAddress = user ? user.get("ethAddress") : "";
   const username = user ? user.getUsername() : walletAddress;
-  const profileId = router.query.profileId;
+  // const profileId = router.query.profileId;
 
   function copyAddress() {
     navigator.clipboard.writeText(walletAddress);

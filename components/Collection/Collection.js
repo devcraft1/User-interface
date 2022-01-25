@@ -2,49 +2,37 @@ import Card from "../Card/Card";
 import Header from "../Main/Header";
 import Sidebar from "../Main/Sidebar";
 import Bottom from "../Main/Bottom";
-import { MoralisContext, useMoralis } from "react-moralis"
-import { useEffect } from "react"
-
+import { MoralisContext, useMoralis } from "react-moralis";
+import { useEffect } from "react";
 
 function Collection() {
-
-
-    return (
-
-<div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden"> 
-      
-        <Header />
+  return (
+    <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
+      <Header />
       <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>
         <Sidebar />
 
-
         <div className="flex flex-col items-center p-12 mx-auto">
+          {/* <section className={`flex items-end space-x-7 bg-gradient-to-l to-black ${color} h-40 border-b text-white padding-8`}> */}
+          <section
+            className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b text-white padding-4 mb-8`}
+          >
+            <h1 className="text-lg mb-8">User Collection</h1>
+          </section>
 
+          <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
+            <Card />
+            <Card />
+            <Card />
+          </div>
 
-            {/* <section className={`flex items-end space-x-7 bg-gradient-to-l to-black ${color} h-40 border-b text-white padding-8`}> */}
-            <section className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b text-white padding-4 mb-8`}>
-                <h1 className="text-lg mb-8">User Collection</h1>
-            </section>
-    
-
-        <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
-            <Card />    
-            <Card />    
-            <Card />    
-          
-        </div>
-        
-        {/* <Bottom/>     */}
-        {/* <div className="m-12 flex flex-col text-black">
+          {/* <Bottom/>     */}
+          {/* <div className="m-12 flex flex-col text-black">
             Collection</div> */}
-
-            <Bottom />
         </div>
-        </main>
-
-            </div>
-
-    )
+      </main>
+    </div>
+  );
 }
 
-export default Collection
+export default Collection;
