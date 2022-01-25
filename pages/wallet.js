@@ -7,7 +7,9 @@ import NativeBalance from "../components/MoralisComp/NativeBalance";
 import Head from "next/head";
 import Bottom from "../components/Main/Bottom";
 import { useMoralis } from "react-moralis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ModalSwap } from "../components/Swap/ModalSwap";
+import { ModalSend } from "../components/Swap/ModalSend";
 
 function swap() {
   // const { isAuthenticated } = useMoralis;
@@ -18,6 +20,23 @@ function swap() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [openSend, setOpenSend] = useState(false);
+
+  function handleClick() {
+    setOpenModal(true);
+  }
+  function closeModal() {
+    setOpenModal(false);
+  }
+
+  function handleOpenSend() {
+    setOpenSend(true);
+  }
+  function closeSend() {
+    setOpenSend(false);
+  }
 
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
@@ -45,9 +64,44 @@ function swap() {
               </div>
             </div>
           </section>
-          <div className="w-6/12">
-            {/* <SwapPage /> */}
-            <Bottom />
+          <div className="w-6/12 flex flex-col items-center">
+            <div className="flex flex-row">
+              {!openModal && !openSend && (
+                <button
+                  className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  onClick={handleClick}
+                >
+                  Swap
+                </button>
+              )}
+              {!openSend && !openModal && (
+                <button
+                  className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  onClick={handleOpenSend}
+                >
+                  Send
+                </button>
+              )}
+            </div>
+            {openModal && <ModalSwap />}
+            {openModal && (
+              <button
+                className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                onClick={closeModal}
+              >
+                Close
+              </button>
+            )}
+            {openSend && <ModalSend />}
+            {openSend && (
+              <button
+                className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                onClick={closeSend}
+              >
+                Close
+              </button>
+            )}
+            {/* <Bottom /> */}
           </div>
         </div>
       </main>
