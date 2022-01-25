@@ -3,7 +3,6 @@ import { useMoralis, useMoralisFile } from "react-moralis";
 
 function Modal() {
   const {
-    Moralis,
     isWeb3Enabled,
     enableWeb3,
     isAuthenticated,
@@ -17,7 +16,6 @@ function Modal() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
-  // const { saveFile } = useMoralisFile();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +48,7 @@ function Modal() {
       <h1 className="text-white">Username</h1>
       <div className="flex text-white pl-4 items-center w-9/12 g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
         <input
+          type="text"
           id="username"
           name="username"
           className="outline-none bg-transparent"
@@ -59,22 +58,25 @@ function Modal() {
       <h1 className="text-white">Email</h1>
       <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
         <input
+          type="text"
           id="email"
           name="email"
           className="outline-none bg-transparent"
+          placeholder={user.get("email")}
         />
       </div>
       <h1 className="text-white">Social Media</h1>
       <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
         <input
+          type="text"
           id="socials"
           name="socials"
-          placeholder="make sure 'https://' is included!"
+          placeholder="https://mydomain.com"
           className="outline-none bg-transparent"
         />
       </div>
-      {/* <h1 className="text-white">Avatar</h1> */}
-      {/* <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
+      {/* <h1 className="text-white">Avatar</h1>
+      <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
         <input
           id="avatar"
           name="avatar"

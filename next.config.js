@@ -1,11 +1,8 @@
-/**
- * @type {import('next').NextConfig}
- */
 module.exports = {
-images:{
-    domains: ["https://avatars.dicebear.com"]
- }
-}
+  images: {
+    domains: ["https://avatars.dicebear.com"],
+  },
+};
 
 // const nextConfig = {
 //   modules: true,

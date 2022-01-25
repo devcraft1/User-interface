@@ -23,6 +23,7 @@ function Profile() {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
+
   const [editModal, setEditModal] = useState(false);
 
   function handleClick() {

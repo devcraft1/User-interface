@@ -65,11 +65,11 @@ function swap() {
               </div>
             </div>
           </section>
-          <div className="w-6/12 flex flex-col items-center">
+          <div className="w-9/12 flex flex-col items-center justify-evenly">
             <div className="flex flex-row">
               {!openModal && !openSend && (
                 <button
-                  className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  className="flex flex-row justify-evenly items-center p-1.5 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
                   onClick={handleClick}
                 >
                   Swap
@@ -77,7 +77,7 @@ function swap() {
               )}
               {!openSend && !openModal && (
                 <button
-                  className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  className="flex flex-row justify-evenly items-center p-1.5 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
                   onClick={handleOpenSend}
                 >
                   Send
@@ -87,7 +87,7 @@ function swap() {
             {openModal && <ModalSwap />}
             {openModal && (
               <button
-                className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                className="flex flex-row justify-evenly items-center p-1 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
                 onClick={closeModal}
               >
                 Close
@@ -96,7 +96,7 @@ function swap() {
             {openSend && <ModalSend />}
             {openSend && (
               <button
-                className="flex flex-row justify-evenly items-center p-2 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                className="flex flex-row justify-evenly items-center p-1 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
                 onClick={closeSend}
               >
                 Close
