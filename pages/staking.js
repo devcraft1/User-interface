@@ -4,6 +4,7 @@ import StakingPage from "../components/Staking/StakingPage";
 import Head from "next/head";
 import { useMoralis } from "react-moralis";
 import { useEffect } from "react";
+import Bottom from "../components/Main/Bottom";
 
 function minter() {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -16,7 +17,7 @@ function minter() {
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-y-scroll">
       <Head>
-        <title>AVAS Staking</title>
+        <title>Avasound Staking</title>
         <link rel="icon" href="/Avax_logo.png" />
       </Head>
 

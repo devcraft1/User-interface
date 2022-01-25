@@ -11,10 +11,10 @@ function About() {
         </h1>
       </div>
       <p className="border-b-2 border-teal-300 mb-2 mt-2">
-        A one stop music distribution service on avalanche.
+        Music distribution & marketplace service on avalanche.
       </p>
       <p className="border-b-2 border-teal-300 mb-2 mt-2">
-        For record labels, musicians and fans alike.
+        For record labels, musicians and music enthusiasts.
       </p>
       <div>
         <div className="p-8 text-white">

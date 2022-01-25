@@ -34,7 +34,7 @@ function Userprofile() {
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
       <Head>
-        <title>AVASOUND</title>
+        <title>Avasound Profile</title>
         <link rel="icon" href="/Avax_logo.png" />
       </Head>
 

@@ -4,13 +4,24 @@ import MintpageButton from "../Main/Buttons/MintpageButton";
 import SwappageButton from "../Main/Buttons/SwappageButton";
 import Modal from "./Modal";
 import { useState } from "react";
-import Userinfo from "./Userinfo";
+import { useMoralis } from "react-moralis";
+import { CursorClickIcon, DuplicateIcon } from "@heroicons/react/outline";
 
 function Profile() {
+  const { user } = useMoralis();
   const [editModal, setEditModal] = useState(false);
+
+  const email = user.get("email");
+  const socials = user.get("url");
 
   function handleClick() {
     setEditModal(true);
+  }
+  function copyEmail() {
+    navigator.clipboard.writeText(email);
+  }
+  function navigateLink() {
+    window.open(socials);
   }
 
   return (
@@ -18,6 +29,32 @@ function Profile() {
       <div className="flex flex-col right-0 border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl px-2">
         <div className="mb-6 flex flex-col items-center" onClick={handleClick}>
           {!editModal && <ChangeUsername />}
+        </div>
+        <div className="flex flex-col items-center text-white space-y-2 mb-4 text-sm">
+          {email ? (
+            <div
+              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-teal-300"
+              onClick={copyEmail}
+            >
+              <DuplicateIcon className="h-3 w-3 mr-1" />
+
+              {email}
+            </div>
+          ) : (
+            ""
+          )}
+          {socials ? (
+            <div
+              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-teal-300"
+              onClick={() => window.open(socials)}
+            >
+              <CursorClickIcon className="h-3 w-3 mr-1" />
+
+              {socials}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="flex flex-col items-center">
           {editModal && <Modal setEditModal={setEditModal} />}

@@ -10,6 +10,7 @@ import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import { ModalSwap } from "../components/Swap/ModalSwap";
 import { ModalSend } from "../components/Swap/ModalSend";
+import Sponsors from "../components/Main/Sponsors";
 
 function swap() {
   // const { isAuthenticated } = useMoralis;
@@ -41,7 +42,7 @@ function swap() {
   return (
     <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
       <Head>
-        <title>AVAS Wallet</title>
+        <title>Avasound Wallet</title>
         <link rel="icon" href="/Avax_logo.png" />
       </Head>
 
@@ -101,7 +102,8 @@ function swap() {
                 Close
               </button>
             )}
-            {/* <Bottom /> */}
+            <Bottom />
+            {/* <Sponsors /> */}
           </div>
         </div>
       </main>

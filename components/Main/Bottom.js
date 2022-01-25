@@ -4,6 +4,7 @@ import {
 } from "@heroicons/react/outline";
 import { ByMoralis } from "react-moralis";
 import Image from "next/image";
+import Sponsors from "./Sponsors";
 function Bottom() {
   return (
     <div>
@@ -20,20 +21,7 @@ function Bottom() {
                 </div> */}
         </div>
       </section>
-      <div className="my-2 flex flex-row justify-center">
-        {" "}
-        <ByMoralis
-          variant="dark"
-          // style={{ marginLeft: "auto", marginRight: "auto" }}
-        />
-        <Image
-          width={115}
-          height={50}
-          src="/avax2.png"
-          alt="Item"
-          className="rounded-full"
-        />
-      </div>
+      {/* <Sponsors /> */}
     </div>
   );
 }
