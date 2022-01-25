@@ -3,16 +3,27 @@ import CollectionButton from "../Main/Buttons/CollectionButton";
 import MintpageButton from "../Main/Buttons/MintpageButton";
 import SwappageButton from "../Main/Buttons/SwappageButton";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { CursorClickIcon, DuplicateIcon } from "@heroicons/react/outline";
 
 function Profile() {
-  const { user } = useMoralis();
-  const [editModal, setEditModal] = useState(false);
+  const {
+    user,
+    isWeb3Enabled,
+    enableWeb3,
+    isAuthenticated,
+    isWeb3EnableLoading,
+  } = useMoralis();
 
   const email = user.get("email");
   const socials = user.get("url");
+
+  useEffect(() => {
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, isWeb3Enabled]);
+  const [editModal, setEditModal] = useState(false);
 
   function handleClick() {
     setEditModal(true);

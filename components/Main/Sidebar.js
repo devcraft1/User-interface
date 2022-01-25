@@ -11,7 +11,7 @@ export default function Sidebar() {
   const router = useRouter();
   const { isAuthenticated, logout, user } = useMoralis();
 
-  const userId = user ? user.get("objectId") : "peflex"; // FIX USER ID PROP WITH MORALIS
+  const userId = user ? user.get("username") : "undefined"; // FIX USER ID PROP WITH MORALIS
 
   function openProfile() {
     router.push(`/profile/${userId}`);

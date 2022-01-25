@@ -69,6 +69,7 @@ function Modal() {
         <input
           id="socials"
           name="socials"
+          placeholder="make sure 'https://' is included!"
           className="outline-none bg-transparent"
         />
       </div>
