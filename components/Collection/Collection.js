@@ -3,9 +3,27 @@ import Header from "../Main/Header";
 import Sidebar from "../Main/Sidebar";
 import Bottom from "../Main/Bottom";
 import { MoralisContext, useMoralis } from "react-moralis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import NFTBalance from "../MoralisComp/NFTBalance";
 
 function Collection() {
+  const {
+    user,
+    isWeb3Enabled,
+    enableWeb3,
+    isAuthenticated,
+    isWeb3EnableLoading,
+  } = useMoralis();
+
+  const [userProfile, setUserProfile] = useState();
+
+  useEffect(() => {
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (user) {
+      setUserProfile(user);
+    }
+  }, [isAuthenticated, isWeb3Enabled, user]);
   return (
     <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
       <Header />

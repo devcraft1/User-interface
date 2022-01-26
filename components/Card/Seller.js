@@ -1,4 +1,9 @@
-import { DownloadIcon, TicketIcon } from "@heroicons/react/outline";
+import {
+  DownloadIcon,
+  MusicNoteIcon,
+  TicketIcon,
+} from "@heroicons/react/outline";
+import { useState } from "react";
 
 function Seller(props) {
   function handleClick() {
@@ -6,13 +11,36 @@ function Seller(props) {
     navigator.clipboard.writeText(walletAddress);
   }
 
+  const [download, setDownload] = useState(true);
+
+  function showTicket() {
+    setDownload(false);
+  }
+  function showDownload() {
+    setDownload(true);
+  }
+
   return (
     <div className="flex items-center justify-between bg-gradient-to-r from-gray-500/[0.5] rounded-full mx-2 pl-2 pr-2">
       <div>
-        {/* TODO: download ? ticket */}
-        <DownloadIcon className="h-4 w-4 text-white " alt="digital download" />
+        {download ? (
+          <DownloadIcon
+            onClick={showTicket}
+            className="h-4 w-4 text-white "
+            alt="digital download"
+          />
+        ) : (
+          ((
+            <TicketIcon onClick={showDownload} className="h-4 w-4 text-white" />
+          ),
+          (
+            <MusicNoteIcon
+              onClick={showDownload}
+              className="h-4 w-4 text-white"
+            />
+          ))
+        )}
         {/* <DownloadIcon className="h-4 w-4 text-white hover:text-red-600" alt="digital download"/> */}
-        {/* <TicketIcon className="h-4 w-4 text-white"/> */}
       </div>
       <p
         className="font-bold text-sm text-white hover:text-teal-300 hover:cursor-pointer"

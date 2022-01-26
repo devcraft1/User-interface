@@ -5,6 +5,7 @@ import Description from "./Description";
 import Purchase from "./Purchase";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import NFTBalance from "../MoralisComp/NFTBalance";
 
 function Card() {
   const {
@@ -34,7 +35,7 @@ function Card() {
   }
 
   return (
-    <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 border-black bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl">
+    <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 border-black rounded-xl shadow-xl">
       <div className="border-b w-48 flex justify-between items-center p-2">
         <h1 className="tracking-wider text-white">Record Title</h1>
         {/* <HeartIcon className="h-5 w-5 hover:text-red-700 hover:cursor-pointer"/> */}
@@ -61,8 +62,21 @@ function Card() {
       </div>
       <div className="flex flex-col w-64 py-1">
         <Seller userProfile={userProfile} />
-        <Description />
-        <Purchase />
+        <div className="py-4 text-sm">
+          <h1 className="pl-4 font-semibold text-white">Artist</h1>
+        </div>
+
+        <div className="flex items-center mt-2 justify-between rounded-full mx-2 pl-2 pr-2">
+          <p>0.12 AVAX</p>
+
+          <button
+            className="text-sm text-black bg-teal-300 rounded-full px-2 hover:shadow-xl 
+                                active:text-white active:border-b-2 active:border-teal-300 active:bg-teal-700 border-b-2 border-black"
+          >
+            Purchase
+          </button>
+        </div>
+        {/* <NFTBalance /> */}
       </div>
     </div>
   );

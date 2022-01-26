@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import MoralisDappContext from "./context";
 
@@ -11,18 +11,21 @@ function MoralisDappProvider({ children }) {
       setChainId(chain);
     });
 
-    Moralis.onAccountsChanged(function (address) {
+    Moralis.onAccountChanged(function (address) {
       setWalletAddress(address[0]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setChainId(web3.givenProvider?.chainId));
-  useEffect(
-    () => setWalletAddress(web3.givenProvider?.selectedAddress || user?.get("ethAddress")),
-    [web3, user]
-  );
+  // useEffect(() => setChainId(web3.givenProvider?.chainId));
+  // useEffect(
+  //   () =>
+  //     setWalletAddress(
+  //       web3.givenProvider?.selectedAddress || user?.get("ethAddress")
+  //     ),
+  //   [web3, user]
+  // );
 
   return (
     <MoralisDappContext.Provider value={{ walletAddress, chainId }}>
