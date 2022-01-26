@@ -14,7 +14,7 @@ function MintpageButton() {
       onClick={openMintpage}
     >
       <PlusCircleIcon className="h-5 w-5 " />
-      <p>Upload Record</p>
+      <p>Mint Record</p>
     </button>
   );
 }

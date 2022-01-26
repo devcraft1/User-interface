@@ -17,7 +17,7 @@ function Login() {
         <div
           className="text-sm my-12 text-black bg-teal-300 rounded-full py-3 px-4 
                             hover:shadow-xl active:text-white 
-                            active:border-b-2 active:border-teal-300 active:bg-teal-700"
+                            active:border-b-2 active:border-teal-300 active:bg-teal-700 border-b-2 border-blackx"
         >
           <button onClick={authenticate}>Explore Market</button>
         </div>

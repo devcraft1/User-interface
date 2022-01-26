@@ -27,7 +27,7 @@ export default function Header(user) {
           className="text-sm text-black bg-teal-300 rounded-full py-2 px-6
           hover:shadow-xl active:text-white
           active:border-b-2 active:border-teal-300 active:bg-teal-700
-          flex flex-row items-center"
+          flex flex-row items-center border-b-2 border-black"
           onClick={!isAuthenticated ? authenticate : userLogout}
         >
           <CreditCardIcon className="h-7 w-7 pr-2" />

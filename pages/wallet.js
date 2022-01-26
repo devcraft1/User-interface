@@ -87,7 +87,8 @@ function swap() {
             {openModal && <ModalSwap />}
             {openModal && (
               <button
-                className="flex flex-row justify-evenly items-center p-1 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+              active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                 onClick={closeModal}
               >
                 Close
@@ -96,7 +97,8 @@ function swap() {
             {openSend && <ModalSend />}
             {openSend && (
               <button
-                className="flex flex-row justify-evenly items-center p-1 text-teal-300 bg-black opacity-95 w-24 mt-4 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+                active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                 onClick={closeSend}
               >
                 Close

@@ -92,7 +92,7 @@ function Mintpage() {
   }
 
   return (
-    <div className="flex w-full flex-col justify-center">
+    <div className="flex w-full flex-col justify-center text-white">
       <div className="flex flex-col items-center just w-full  border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl">
         <div className="mt-2 py-2 w-9/12 mx-2 items-center font-bold text-lg text-center text-white border-b ">
           Upload Record
@@ -122,6 +122,7 @@ function Mintpage() {
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
+              <div className="mt-4"></div>
               <p>Upload Cover Artwork</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
@@ -154,6 +155,8 @@ function Mintpage() {
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
+              <div className="mt-4"></div>
+
               <p>Upload MP3 & WAV files (ZIP)</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input

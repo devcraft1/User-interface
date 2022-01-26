@@ -1,4 +1,4 @@
-import { HeartIcon } from "@heroicons/react/outline";
+import { FireIcon, HeartIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import Seller from "./Seller";
 import Description from "./Description";
@@ -16,6 +16,7 @@ function Card() {
   } = useMoralis();
 
   const [userProfile, setUserProfile] = useState();
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -25,12 +26,29 @@ function Card() {
     }
   }, [isAuthenticated, isWeb3Enabled, user]);
 
+  function likeItem() {
+    setIsLiked(true);
+  }
+  function dislikeItem() {
+    setIsLiked(false);
+  }
+
   return (
     <div className="w-64 h-96 flex flex-col items-center border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl">
       <div className="border-b w-48 flex justify-between items-center p-2">
         <h1 className="tracking-wider text-white">Record Title</h1>
         {/* <HeartIcon className="h-5 w-5 hover:text-red-700 hover:cursor-pointer"/> */}
-        <HeartIcon className="h-5 w-5 hover:cursor-pointer" />
+        {!isLiked ? (
+          <HeartIcon
+            onClick={likeItem}
+            className="h-5 w-5 hover:cursor-pointer text-gray-400"
+          />
+        ) : (
+          <HeartIcon
+            className="h-5 w-5 hover:cursor-pointer text-red-600"
+            onClick={dislikeItem}
+          />
+        )}
       </div>
       <div className="flex items-center my-2 pt-1">
         <Image

@@ -39,8 +39,12 @@ function Profile() {
   return (
     <div className="w-full">
       <div className="flex flex-col right-0 border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl px-2">
-        <div className="mb-6 flex flex-col items-center" onClick={handleClick}>
-          {!editModal && <ChangeUsername />}
+        <div className="mb-6 flex flex-col items-center ">
+          {!editModal && (
+            <div onClick={handleClick}>
+              <ChangeUsername />
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-center text-white space-y-2 mb-4 text-sm">
           {email ? (
@@ -73,7 +77,7 @@ function Profile() {
           {editModal && (
             <button
               className="text-sm w-1/12 flex flex-col items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
-                active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4"
+                active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
               onClick={() => setEditModal(false)}
             >
               Close
@@ -94,6 +98,9 @@ function Profile() {
             <SwappageButton />
           </div>
         </div>
+      </div>
+      <div className="mt-8 bg-teal-500 rounded-full shadow-xl border-b border-teal-300">
+        <h1>LIKES</h1>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ function ChangeUsername() {
     <div className="flex flex-col text-xs relative  w-24 lg:mx-auto">
       <button
         className="text-sm text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
-                active:text-white active:border-b active:border-teal-300 active:bg-teal-700"
+                active:text-white active:border-b active:border-teal-300 active:bg-teal-700 border-b-2 border-black"
         disabled={isUserUpdating}
         // onClick={setUsername}
       >

@@ -10,10 +10,10 @@ function About() {
           Decentralized Music Marketplace
         </h1>
       </div>
-      <p className="border-b-2 border-teal-300 mb-2 mt-2">
+      <p className="mb-2 mt-2">
         Music distribution & marketplace service on avalanche.
       </p>
-      <p className="border-b-2 border-teal-300 mb-2 mt-2">
+      <p className="border-b-2 pb-2  mb-2 mt-2">
         For record labels, musicians and music enthusiasts.
       </p>
       <div>
