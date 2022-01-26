@@ -8,8 +8,8 @@ function SwapPage() {
 
   return (
     <div className="flex w-full flex-col justify-center">
-      <div className="flex flex-col items-center w-full  border-r border-b-2 border-black bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl">
-        <div className="mt-2 mb-2 py-2 w-9/12 mx-2 items-center font-bold text-lg text-center text-white border-b ">
+      <div className="flex flex-col items-center w-full  border-r border-b-2 border-black  rounded-xl shadow-xl">
+        <div className="mt-2 mb-2 py-2 w-9/12 mx-2 items-center font-bold text-lg text-center text-gray-800 border-b ">
           ASSET SWAP
         </div>
         <div className="flex flex-col  justify-center items-center w-full mb-4">

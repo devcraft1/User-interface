@@ -25,7 +25,8 @@ function Collection() {
     }
   }, [isAuthenticated, isWeb3Enabled, user]);
   return (
-    <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
+    // <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-white to-teal-600 h-screen overflow-hidden">
       <Header />
       <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>
         <Sidebar />
@@ -33,7 +34,7 @@ function Collection() {
         <div className="flex flex-col items-center p-12 mx-auto">
           {/* <section className={`flex items-end space-x-7 bg-gradient-to-l to-black ${color} h-40 border-b text-white padding-8`}> */}
           <section
-            className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b text-white padding-4 mb-8`}
+            className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b border-teal-600 text-gray-800 padding-4 mb-8`}
           >
             <h1 className="text-lg mb-8">User Collection</h1>
           </section>

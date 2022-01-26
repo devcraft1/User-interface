@@ -46,7 +46,8 @@ function Modal() {
       className="flex flex-col justify-center w-96 items-center text-center space-y-2 mb-4"
     >
       <h1 className="text-white">Username</h1>
-      <div className="flex text-white pl-4 items-center w-9/12 g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
+      {/* <div className="flex text-white pl-4 items-center w-9/12 g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200"> */}
+      <div className="w-9/12 flex flex-col text-white bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
         <input
           type="text"
           id="username"
@@ -56,7 +57,8 @@ function Modal() {
         />
       </div>
       <h1 className="text-white">Email</h1>
-      <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
+      {/* <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200"> */}
+      <div className="w-9/12 flex flex-col text-white bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
         <input
           type="text"
           id="email"
@@ -66,7 +68,8 @@ function Modal() {
         />
       </div>
       <h1 className="text-white">Social Media</h1>
-      <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200">
+      {/* <div className="flex text-white pl-4 flex-row items-center w-9/12 justify-between g-black opacity-95 shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200"> */}
+      <div className="w-9/12 flex flex-col text-white bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
         <input
           type="text"
           id="socials"

@@ -41,7 +41,7 @@ function swap() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-white to-teal-600 h-screen overflow-hidden">
       <Head>
         <title>Avasound Wallet</title>
         <link rel="icon" href="/Avax_logo.png" />
@@ -52,11 +52,11 @@ function swap() {
         <Sidebar />
         <div className="flex flex-col items-center mx-auto w-full">
           <section
-            className={`sticky flex flex-col justify-center items-center mb-6 bg-transparent mt-8 w-auto text-white`}
+            className={`sticky flex flex-col justify-center items-center mb-6 bg-transparent mt-8 w-auto text-gray-800 `}
           >
             <div className="flex w-full flex-col justify-center">
-              <div className="flex flex-col items-center just w-full  border-r border-b-2 border-black bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl">
-                <div className="mt-2 mb-2 py-2 w-96 mx-2 items-center font-bold text-lg text-center text-white border-b ">
+              <div className="flex flex-col items-center just w-full  border-r border-b-2 rounded-xl shadow-xl">
+                <div className="mt-2 mb-2 py-2 w-96 mx-2 items-center font-bold text-lg text-center text-gray-800 border-b border-teal-600">
                   WALLET
                 </div>
                 <div className="flex flex-col items-center justify-center">

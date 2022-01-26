@@ -35,7 +35,7 @@ function Card() {
   }
 
   return (
-    <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 border-black rounded-xl shadow-xl">
+    <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 rounded-xl shadow-xl">
       <div className="border-b w-48 flex justify-between items-center p-2">
         <h1 className="tracking-wider text-white">Record Title</h1>
         {/* <HeartIcon className="h-5 w-5 hover:text-red-700 hover:cursor-pointer"/> */}
@@ -66,7 +66,7 @@ function Card() {
           <h1 className="pl-4 font-semibold text-white">Artist</h1>
         </div>
 
-        <div className="flex items-center mt-2 justify-between rounded-full mx-2 pl-2 pr-2">
+        <div className="flex items-center mt-8 justify-between rounded-full mx-2 pl-4 pr-4">
           <p>0.12 AVAX</p>
 
           <button

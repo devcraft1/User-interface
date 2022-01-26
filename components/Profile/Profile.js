@@ -50,10 +50,10 @@ function Profile() {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-center text-white space-y-2 mb-4 text-sm">
+        <div className="flex flex-col items-center text-gray-800 space-y-2 mb-4 text-sm">
           {email ? (
             <div
-              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-teal-300"
+              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-white"
               onClick={copyEmail}
             >
               <DuplicateIcon className="h-3 w-3 mr-1" />
@@ -65,7 +65,7 @@ function Profile() {
           )}
           {socials ? (
             <div
-              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-teal-300"
+              className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-white"
               onClick={() => window.open(socials)}
             >
               <CursorClickIcon className="h-3 w-3 mr-1" />
@@ -88,8 +88,6 @@ function Profile() {
             </button>
           )}
         </div>
-        {/* <div className="flex flex-col">{!editModal && <Userinfo />}</div> */}
-
         <hr className="border-t-[0.1px] border-teal-300" />
         <div className="flex flex-row justify-between py-2 ">
           <div className="w-48  text-white flex flex-col items-center">
@@ -103,9 +101,6 @@ function Profile() {
           </div>
         </div>
       </div>
-      {/* <div className="mt-8 bg-teal-500 rounded-full shadow-xl border-b border-teal-300">
-        <h1>LIKES</h1>
-      </div> */}
     </div>
   );
 }

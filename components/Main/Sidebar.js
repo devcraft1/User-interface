@@ -21,7 +21,7 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="fixed left-0 z-50 text-gray-300 px-8 text-sm border-r border-b rounded-xl shadow-xl mt-16">
+    <div className="fixed left-0 z-50 text-gray-800 px-8 text-sm border-r border-b rounded-xl shadow-xl mt-16">
       <div className="space-y-8 mt-8 mb-8 ">
         <button
           className="flex items-center space-x-2 hover:text-white active:text-teal-300"
