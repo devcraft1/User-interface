@@ -8,7 +8,7 @@ function Login() {
   const { authenticate } = useMoralis();
 
   return (
-    <div className="bg-gradient-to-b from-black to-teal-600 h-screen">
+    <div className="bg-gradient-to-b from-white to-teal-600 h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center">
         <div className="mt-24">

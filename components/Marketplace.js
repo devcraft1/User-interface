@@ -25,6 +25,12 @@ function Marketplace() {
         <Card />
         <Card />
       </div>
+      <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
       <Bottom />
       <Sponsors />
 

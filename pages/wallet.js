@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { ModalSwap } from "../components/Swap/ModalSwap";
 import { ModalSend } from "../components/Swap/ModalSend";
 import Sponsors from "../components/Main/Sponsors";
+import { XIcon } from "@heroicons/react/outline";
 
 function swap() {
   // const { isAuthenticated } = useMoralis;
@@ -66,10 +67,11 @@ function swap() {
             </div>
           </section>
           <div className="w-9/12 flex flex-col items-center justify-evenly">
-            <div className="flex flex-row">
+            <div className="flex flex-row space-x-4">
               {!openModal && !openSend && (
                 <button
-                  className="flex flex-row justify-evenly items-center p-1.5 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+                active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                   onClick={handleClick}
                 >
                   Swap
@@ -77,7 +79,8 @@ function swap() {
               )}
               {!openSend && !openModal && (
                 <button
-                  className="flex flex-row justify-evenly items-center p-1.5 text-teal-300 bg-black opacity-95 mt-4 mb-4 w-40 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full"
+                  className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+                  active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                   onClick={handleOpenSend}
                 >
                   Send
@@ -87,21 +90,21 @@ function swap() {
             {openModal && <ModalSwap />}
             {openModal && (
               <button
-                className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+                className="text-sm w-9 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
               active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                 onClick={closeModal}
               >
-                Close
+                <XIcon className="h-5 w-5" />
               </button>
             )}
             {openSend && <ModalSend />}
             {openSend && (
               <button
-                className="text-sm w-24 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+                className="text-sm w-9 mt-4 items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
                 active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
                 onClick={closeSend}
               >
-                Close
+                <XIcon className="h-5 w-5" />
               </button>
             )}
             <Bottom />

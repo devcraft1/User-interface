@@ -5,7 +5,11 @@ import SwappageButton from "../Main/Buttons/SwappageButton";
 import Modal from "./Modal";
 import { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import { CursorClickIcon, DuplicateIcon } from "@heroicons/react/outline";
+import {
+  CursorClickIcon,
+  DuplicateIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 
 function Profile() {
   const {
@@ -76,11 +80,11 @@ function Profile() {
           {editModal && <Modal setEditModal={setEditModal} />}
           {editModal && (
             <button
-              className="text-sm w-1/12 flex flex-col items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
+              className="text-sm w-9 flex flex-col items-center text-black bg-teal-300 rounded-full px-2 py-1 hover:shadow-xl 
                 active:text-white active:border-b active:border-teal-300 active:bg-teal-700 mb-4 border-b-2 border-black"
               onClick={() => setEditModal(false)}
             >
-              Close
+              <XIcon className="h-4 w-4" />
             </button>
           )}
         </div>

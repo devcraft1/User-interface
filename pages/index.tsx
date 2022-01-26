@@ -18,7 +18,7 @@ export default function Home() {
   if (!isAuthenticated) return <Login />;
 
   return (
-    <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-black to-teal-600  h-screen overflow-hidden">
       <Head>
         <title>AVASOUND</title>
         <link rel="icon" href="/Avax_logo.png" />
