@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function Collection() {
   return (
-    <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
       <Header />
       <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>
         <Sidebar />

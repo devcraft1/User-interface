@@ -38,8 +38,8 @@ function Profile() {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col right-0 border-r border-b bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl px-2">
-        <div className="mb-6 flex flex-col items-center ">
+      <div className="flex flex-col right-0 border-r border-b-2 border-black bg-gradient-to-t from-gray-500/5 rounded-xl shadow-xl px-2">
+        <div className="mb-6 mt-6 flex flex-col items-center ">
           {!editModal && (
             <div onClick={handleClick}>
               <ChangeUsername />
@@ -99,9 +99,9 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="mt-8 bg-teal-500 rounded-full shadow-xl border-b border-teal-300">
+      {/* <div className="mt-8 bg-teal-500 rounded-full shadow-xl border-b border-teal-300">
         <h1>LIKES</h1>
-      </div>
+      </div> */}
     </div>
   );
 }

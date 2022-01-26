@@ -14,7 +14,7 @@ function minter() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
   return (
-    <div className="bg-gradient-to-b from-black to-gray-500/5 h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-black to-teal-600 h-screen overflow-hidden">
       <Head>
         <title>Avasound Minter</title>
         <link rel="icon" href="/Avax_logo.png" />
