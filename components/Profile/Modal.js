@@ -74,7 +74,7 @@ function Modal() {
           type="text"
           id="socials"
           name="socials"
-          placeholder="https://mydomain.com"
+          placeholder="https://insertlink.com"
           className="outline-none bg-transparent"
         />
       </div>

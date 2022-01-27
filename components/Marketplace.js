@@ -5,10 +5,10 @@ import tokenDetails from "../contracts/TokenContract";
 import marketplaceDetails from "../contracts/MarketplaceContract";
 import Sponsors from "./Main/Sponsors";
 
-const { MarketplaceABI, marketplaceAddress } = marketplaceDetails;
-const { TokenABI, TokenAddress } = tokenDetails;
+// const { MarketplaceABI, marketplaceAddress } = marketplaceDetails;
+// const { TokenABI, TokenAddress } = tokenDetails;
 
-console.log(MarketplaceABI, TokenABI);
+// console.log(MarketplaceABI, TokenABI);
 
 function Marketplace() {
   return (

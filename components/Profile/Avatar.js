@@ -16,7 +16,7 @@ function Avatar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
-  const avatar = user.get("file");
+  // const avatar = user.get("file");
 
   return (
     <div>

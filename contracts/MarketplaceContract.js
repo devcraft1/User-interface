@@ -2,19 +2,23 @@ const MarketplaceABI = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_contract",
-        type: "address",
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
       },
-    ],
-    name: "_checkRoyalties",
-    outputs: [
       {
-        internalType: "bool",
-        name: "",
-        type: "bool",
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
       },
     ],
+    name: "acceptBuyOffer",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -26,9 +30,9 @@ const MarketplaceABI = [
         type: "uint256",
       },
     ],
-    name: "acceptBuyOffer",
+    name: "makeBuyOffer",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   {
@@ -60,19 +64,6 @@ const MarketplaceABI = [
     ],
     name: "BuyOfferWithdrawn",
     type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "makeBuyOffer",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
   },
   {
     inputs: [
@@ -147,6 +138,16 @@ const MarketplaceABI = [
       {
         internalType: "uint256",
         name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
         type: "uint256",
       },
     ],
@@ -342,7 +343,7 @@ const MarketplaceABI = [
   },
 ];
 
-const marketplaceAddress = "0x4f921cfBe0983F23424dd41BaBA0cf6E31C6930c";
+const marketplaceAddress = "0xA5B7cfA7a4f351354677CFE7a5694b7023fe4175c";
 
 const marketplaceDetails = { MarketplaceABI, marketplaceAddress };
 

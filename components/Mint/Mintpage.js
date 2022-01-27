@@ -1,14 +1,17 @@
 import GeneralInputs from "./GeneralInputs";
 import TokenInputs from "./TokenInputs";
 import SongName from "./SongName";
-// import Web3 from "web3";
+import Web3 from "web3";
+import Moralis from "moralis";
 import { useMoralisFile, useMoralis } from "react-moralis";
+import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
+import { MoralisDappProvider } from "../../providers/MoralisDappProvider/MoralisDappProvider";
 
 function Mintpage() {
   const { saveFile } = useMoralisFile();
-  const { Moralis, account } = useMoralis();
+  const { account, user } = useMoralis();
 
-  let nftContractAddress = "0x351bbee7C6E9268A1BF741B098448477E08A0a53";
+  let nftContractAddress = TokenAddress;
 
   async function saveFileToIPFS(file, filename) {
     await saveFile(filename, file, { saveIPFS: true }).then(async (hash) => {
@@ -18,8 +21,43 @@ function Mintpage() {
     });
   }
 
+  async function contractCall(object) {
+    // const web3Js = new Web3(Moralis.provider);
+    // const web3 = await Moralis.enableWeb3();
+
+    await Moralis.enableWeb3();
+    const web3 = new Web3(MoralisDappProvider);
+    const contract = new web3.eth.Contract(TokenABI, TokenAddress);
+
+    contract.methods.createAlbum(
+      object.get("objectId"),
+      object.get("recordCount"),
+      "4",
+      object.get("recordPrice"),
+      object.get("royaltyPrice")
+      // "jhgsfk",
+      // "100",
+      // "4",
+      // "1",
+      // "10"
+    );
+    // .send({ from: user.get("ethAddress"), gasLimit: 3000000 })
+    // .on("error", function (error, receipt) {
+    //   // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+
+    //   alert("Successful");
+    // })
+    // .on("receipt", function (error, receipt) {
+    //   //Waiting for live query then proceed to game
+    //   alert("Error");
+    // });
+  }
+
   // Take input from the user and create a new record
   async function createRecord() {
+    console.log(TokenABI, TokenAddress);
+    console.log(user.get("ethAddress"));
+
     // Get the values from the inputs
     const recordTitle = document.getElementById("recordTitle").value;
     const recordArtist = document.getElementById("recordArtist").value;
@@ -27,6 +65,7 @@ function Mintpage() {
     const recordCount = document.getElementById("recordCount").value;
     const recordPrice = document.getElementById("recordPrice").value;
     const recordFiles = document.getElementById("recordFiles").files[0];
+    const royaltyPrice = document.getElementById("royaltyPrice").value;
 
     // upload the cover art to ipfs
     // let ipfsCover = async () => {
@@ -66,6 +105,7 @@ function Mintpage() {
         artist: recordArtist,
         count: recordCount,
         price: recordPrice,
+        royaltyprice: royaltyPrice,
         files: ipfsFiles,
       },
     };
@@ -79,16 +119,31 @@ function Mintpage() {
     console.log(metadataURI);
     alert("Upload successful");
 
-    // minting
+    const Album = new Moralis.Object.extend("Album");
+    const album = new Album();
+    album.set("recordTitle", recordTitle);
+    album.set("recordArtist", recordArtist);
+    album.set("recordCover", ipfsCover);
+    album.set("recordCount", parseInt(recordCount));
+    album.set("recordPrice", parseFloat(recordPrice));
+    album.set("recordFiles", ipfsFiles);
+    album.set("royaltyPrice", parseFloat(royaltyPrice));
+    album.save().then((object) => {
+      // alert(JSON.stringify(object));
+      contractCall(object);
+    });
+    // .catch((error) => {
+    //   // alert("Error");
+    //   alert(JSON.stringify(error));
+    // });
 
+    //
     // use the metadata URI to mint a new record
     // write the smart contract which takes in the metadata URI
     // and call it after the upload is successful
-  }
 
-  async function createAlbum(e) {
-    e.preventDefault();
-    alert("successfully minted");
+    // Loading Screen
+    // authentication with metamask upon mintitem click
   }
 
   return (
@@ -151,7 +206,16 @@ function Mintpage() {
                   name="recordPrice"
                   id="recordPrice"
                   type="n"
-                  placeholder="Price in AVAX/USDC"
+                  placeholder="Price in AVAX"
+                  className="bg-transparent outline:none focus:outline-none text-white text-center"
+                />
+              </div>
+              <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
+                <input
+                  name="royaltyPrice"
+                  id="royaltyPrice"
+                  type="n"
+                  placeholder="Royalty Price"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
