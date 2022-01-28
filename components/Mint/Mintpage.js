@@ -11,7 +11,7 @@ function Mintpage() {
   const { saveFile } = useMoralisFile();
   const { account, user } = useMoralis();
 
-  let nftContractAddress = TokenAddress;
+  // let nftContractAddress = TokenAddress;
 
   async function saveFileToIPFS(file, filename) {
     await saveFile(filename, file, { saveIPFS: true }).then(async (hash) => {
@@ -21,40 +21,38 @@ function Mintpage() {
     });
   }
 
-  async function contractCall(object) {
+  async function contractCall(album) {
     // const web3Js = new Web3(Moralis.provider);
     // const web3 = await Moralis.enableWeb3();
 
     await Moralis.enableWeb3();
-    const web3 = new Web3(MoralisDappProvider);
+    const web3 = new Web3(Moralis.provider);
     const contract = new web3.eth.Contract(TokenABI, TokenAddress);
 
-    contract.methods.createAlbum(
-      object.get("objectId"),
-      object.get("recordCount"),
-      "4",
-      object.get("recordPrice"),
-      object.get("royaltyPrice")
-      // "jhgsfk",
-      // "100",
-      // "4",
-      // "1",
-      // "10"
-    );
-    // .send({ from: user.get("ethAddress"), gasLimit: 3000000 })
-    // .on("error", function (error, receipt) {
-    //   // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+    contract.methods
+      .createAlbum(
+        album.get("objectId"),
+        album.get("recordCount"),
+        "4",
+        album.get("recordPrice"),
+        album.get("royaltyPrice")
+      )
+      .send({ from: user.get("ethAddress"), gasLimit: 3000000 })
+      .on("error", function (error, receipt) {
+        // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
 
-    //   alert("Successful");
-    // })
-    // .on("receipt", function (error, receipt) {
-    //   //Waiting for live query then proceed to game
-    //   alert("Error");
-    // });
+        alert("Successful");
+      })
+      .on("receipt", function (error, receipt) {
+        //Waiting for live query then proceed to game
+        alert("Error");
+      });
   }
 
   // Take input from the user and create a new record
   async function createRecord() {
+    // metamask pop up function to sign transaction & pay gas fee
+
     console.log(TokenABI, TokenAddress);
     console.log(user.get("ethAddress"));
 
@@ -78,14 +76,14 @@ function Mintpage() {
     let ipfsCover = "";
     let ipfsFiles = "";
     if (recordCover) {
-      console.log("uploading");
+      console.log("uploading cover");
       await saveFile("cover", recordCover, { saveIPFS: true }).then(
         async (hash) => {
           console.log(hash);
           ipfsCover = hash._ipfs;
         }
       );
-      console.log("almost there");
+      console.log("cover done, now uploading files");
     }
 
     if (recordFiles) {
@@ -128,9 +126,9 @@ function Mintpage() {
     album.set("recordPrice", parseFloat(recordPrice));
     album.set("recordFiles", ipfsFiles);
     album.set("royaltyPrice", parseFloat(royaltyPrice));
-    album.save().then((object) => {
+    album.save().then((album) => {
       // alert(JSON.stringify(object));
-      contractCall(object);
+      contractCall(album);
     });
     // .catch((error) => {
     //   // alert("Error");
