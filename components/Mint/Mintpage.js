@@ -22,10 +22,10 @@ function Mintpage() {
   // }
 
   async function contractCall(object) {
-    // const web3Js = new Web3(Moralis.provider);
-    // const web3 = await Moralis.enableWeb3();
+    // Get a (ethers.js) web3Provider
     const web3Provider = await Moralis.enableWeb3();
     const ethers = Moralis.web3Library;
+
     const contract = new ethers.Contract(
       TokenAddress,
       TokenABI,
