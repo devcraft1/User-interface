@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
 
@@ -5,6 +6,11 @@ function Mintpage() {
   const { saveFile } = useMoralisFile();
   const { account, Moralis, user } = useMoralis();
   let nftContractAddress = TokenAddress;
+
+  const [isUploading, setIsUploading] = useState(false);
+  const [coverDone, setCoverDone] = useState(false);
+  const [musicDone, setMusicDone] = useState(false);
+  const [uploadDone, setUploadDone] = useState(false);
 
   async function contractCall(object) {
     const web3Provider = await Moralis.enableWeb3();
@@ -26,11 +32,15 @@ function Mintpage() {
       )
       .then((result) => {
         alert("successfull");
+        setUploadDone(true);
       });
+    setUploadDone(false);
   }
 
   // Take input from the user and create a new record
   async function createRecord() {
+    setIsUploading(true);
+
     console.log(TokenABI, TokenAddress);
     console.log(user.get("ethAddress"));
 
@@ -54,8 +64,9 @@ function Mintpage() {
         }
       );
       console.log("cover done, now uploading files");
+      setIsUploading(false);
     }
-
+    setCoverDone(true);
     if (recordFiles) {
       await saveFile("recordFiles", recordFiles, { saveIPFS: true }).then(
         async (hash) => {
@@ -64,7 +75,9 @@ function Mintpage() {
         }
       );
       console.log("done uploading");
+      setCoverDone(false);
     }
+    setMusicDone(true);
 
     const metadata = {
       name: recordTitle,
@@ -85,6 +98,7 @@ function Mintpage() {
     const metadataURI = metadataFile.ipfs();
     console.log(metadataURI);
     alert("Upload successful");
+    setMusicDone(false);
 
     const Album = new Moralis.Object.extend("Album");
     const album = new Album();
@@ -98,7 +112,6 @@ function Mintpage() {
     album.save().then((object) => {
       contractCall(object);
     });
-
     // use the metadata URI to mint a new record
     // write the smart contract which takes in the metadata URI
     // and call it after the upload is successful
@@ -243,7 +256,7 @@ function Mintpage() {
               </div>
             </div>
           </div> */}
-          <div className="flex flex-row w-full justify-evenly items-center">
+          <div className="flex flex-col w-full justify-center text-white items-center space-y-4">
             <div className="flex flex-col bg-black opacity-95 py-1 mt-4 mb-2 w-2/12 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
               <button
                 onClick={createRecord}
@@ -252,6 +265,10 @@ function Mintpage() {
                 Mint Items
               </button>
             </div>
+            {isUploading && <div>Upload started</div>}
+            {coverDone && <div>Cover uploaded</div>}
+            {musicDone && <div>Music uploaded</div>}
+            {uploadDone && <div>Upload successful</div>}
           </div>
         </div>
       </div>
