@@ -1,28 +1,12 @@
-import GeneralInputs from "./GeneralInputs";
-import TokenInputs from "./TokenInputs";
-import SongName from "./SongName";
-import Web3 from "web3";
-import Moralis from "moralis";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
-import { MoralisDappProvider } from "../../providers/MoralisDappProvider/MoralisDappProvider";
 
 function Mintpage() {
   const { saveFile } = useMoralisFile();
   const { account, Moralis, user } = useMoralis();
-
   let nftContractAddress = TokenAddress;
 
-  // async function saveFileToIPFS(file, filename) {
-  //   await saveFile(filename, file, { saveIPFS: true }).then(async (hash) => {
-  //     console.log(hash);
-  //     return hash._ipfs;
-  //     //   ipfsCover = hash._ipfs;
-  //   });
-  // }
-
   async function contractCall(object) {
-    // Get a (ethers.js) web3Provider
     const web3Provider = await Moralis.enableWeb3();
     const ethers = Moralis.web3Library;
 
@@ -59,14 +43,6 @@ function Mintpage() {
     const recordFiles = document.getElementById("recordFiles").files[0];
     const royaltyPrice = document.getElementById("royaltyPrice").value;
 
-    // upload the cover art to ipfs
-    // let ipfsCover = async () => {
-    //   await saveFileToIPFS(recordCover, "cover");
-    // };
-    // console.log("almost there");
-    // let ipfsFiles = async () => {
-    //   await saveFileToIPFS(recordFiles, "files");
-    // };
     let ipfsCover = "";
     let ipfsFiles = "";
     if (recordCover) {
@@ -101,7 +77,6 @@ function Mintpage() {
         files: ipfsFiles,
       },
     };
-
     console.log(metadata);
     const metadataFile = new Moralis.File("metadata.json", {
       base64: btoa(JSON.stringify(metadata)),
@@ -121,21 +96,14 @@ function Mintpage() {
     album.set("recordFiles", ipfsFiles);
     album.set("royaltyPrice", parseFloat(royaltyPrice));
     album.save().then((object) => {
-      // alert(JSON.stringify(object));
       contractCall(object);
     });
-    // .catch((error) => {
-    //   // alert("Error");
-    //   alert(JSON.stringify(error));
-    // });
 
-    //
     // use the metadata URI to mint a new record
     // write the smart contract which takes in the metadata URI
     // and call it after the upload is successful
 
     // Loading Screen
-    // authentication with metamask upon mintitem click
   }
 
   return (
