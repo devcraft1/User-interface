@@ -9,7 +9,7 @@ import { MoralisDappProvider } from "../../providers/MoralisDappProvider/Moralis
 
 function Mintpage() {
   const { saveFile } = useMoralisFile();
-  const { account, user } = useMoralis();
+  const { account,Mpralis, user } = useMoralis();
 
   let nftContractAddress = TokenAddress;
 
@@ -22,15 +22,14 @@ function Mintpage() {
   }
 
   async function contractCall(object) {
-    // const web3Js = new Web3(Moralis.provider);
-    // const web3 = await Moralis.enableWeb3();
+    // Get a (ethers.js) web3Provider 
+const web3Provider = await Moralis.enableWeb3();
+const ethers = Moralis.web3Library;
 
-    await Moralis.enableWeb3();
-    const web3 = new Web3(MoralisDappProvider);
-    const contract = new web3.eth.Contract(TokenABI, TokenAddress);
-
-    contract.methods.createAlbum(
-      object.get("objectId"),
+    const contract = new ethers.Contract( TokenAddress,TokenABI,web3Provider.getSigner());
+   console.log(contract)
+    contract.createAlbum(
+      object.id,
       object.get("recordCount"),
       "4",
       object.get("recordPrice"),
@@ -40,17 +39,10 @@ function Mintpage() {
       // "4",
       // "1",
       // "10"
-    );
-    // .send({ from: user.get("ethAddress"), gasLimit: 3000000 })
-    // .on("error", function (error, receipt) {
-    //   // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-
-    //   alert("Successful");
-    // })
-    // .on("receipt", function (error, receipt) {
-    //   //Waiting for live query then proceed to game
-    //   alert("Error");
-    // });
+    ).then((result)=>
+    {
+       alert("successfull")
+    });
   }
 
   // Take input from the user and create a new record
