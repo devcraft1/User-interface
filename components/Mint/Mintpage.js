@@ -36,17 +36,12 @@ function Mintpage() {
         object.get("royaltyPrice")
       )
       .then((result) => {
-        alert("successfull");
+        alert("successful");
         setUploadDone(true);
       });
   }
-
-  // Take input from the user and create a new record
   async function createRecord() {
     setIsUploading(true);
-
-    console.log(TokenABI, TokenAddress);
-    console.log(user.get("ethAddress"));
 
     // Get the values from the inputs
     const recordTitle = document.getElementById("recordTitle").value;
@@ -57,7 +52,6 @@ function Mintpage() {
     const recordFiles = document.getElementById("recordFiles").files[0];
     const royaltyPrice = document.getElementById("royaltyPrice").value;
     const tracksIncluded = document.getElementById("tracksIncluded").value;
-
     let ipfsCover = "";
     let ipfsFiles = "";
     if (recordCover) {
@@ -96,14 +90,11 @@ function Mintpage() {
         files: ipfsFiles,
       },
     };
-    console.log(metadata);
     const metadataFile = new Moralis.File("metadata.json", {
       base64: btoa(JSON.stringify(metadata)),
     });
     await metadataFile.saveIPFS();
     const metadataURI = metadataFile.ipfs();
-    console.log(metadataURI);
-    alert("Upload successful");
     setMusicDone(false);
 
     const Album = new Moralis.Object.extend("Album");
@@ -119,11 +110,6 @@ function Mintpage() {
     album.save().then((object) => {
       contractCall(object);
     });
-    // use the metadata URI to mint a new record
-    // write the smart contract which takes in the metadata URI
-    // and call it after the upload is successful
-
-    // Loading Screen
   }
 
   return (
@@ -134,11 +120,9 @@ function Mintpage() {
         </div>
         <div className="flex flex-col space-y-4 mt-4 mb-4 justify-center items-center w-full">
           <div className=" w-9/12 flex flex-row justify-evenly">
+            {/* RECORD INFORMATION */}
             <div className="flex flex-col space-y-4 mt-4 mb-4 justify-center items-center w-full">
               <p>Record Information</p>
-
-              {/* METADATA ZIP INPUTS BELOW  */}
-
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
                   name="recordTitle"
@@ -178,7 +162,7 @@ function Mintpage() {
                 />
               </div>
             </div>
-            {/* BLOCKCHAIN & METADATA ZIP INPUT BELOW  */}
+            {/* RECORD ECONOMICS */}
             <div className="flex flex-col space-y-4 mt-4 mb-4 justify-center items-center w-full">
               <p>Record Economics</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
@@ -223,55 +207,6 @@ function Mintpage() {
             </div>
           </div>
           <div className="flex flex-col w-11/12 py-1 border-b border-teal-600"></div>
-
-          {/* SONG TITLE INPUTS BELOW */}
-
-          {/* not yet functional with IPFS inputs */}
-
-          {/* <div className="flex flex-col w-6/12 items-center justify-around">
-            <p className="mt-2 mb-2">Tracks included in this record</p>
-
-            <div className="flex p-4 flex-row space-x-12 justify-between">
-              <div className="w-6/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
-                <input
-                  name="metadataSongTitle1"
-                  id="metadataSongTitle1"
-                  type="n"
-                  placeholder="Track 1"
-                  className="bg-transparent outline:none focus:outline-none text-white"
-                />
-              </div>
-              <div className="w-6/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
-                <input
-                  name="metadataSongTitle2"
-                  id="metadataSongTitle2"
-                  type="n"
-                  placeholder="Track 2"
-                  className="bg-transparent outline:none focus:outline-none text-white"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row space-x-12 justify-between">
-              <div className="w-6/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
-                <input
-                  name="metadataSongTitle3"
-                  id="metadataSongTitle3"
-                  type="n"
-                  placeholder="Track 3"
-                  className="bg-transparent outline:none focus:outline-none text-white"
-                />
-              </div>
-              <div className="w-6/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
-                <input
-                  name="metadataSongTitle4"
-                  id="metadataSongTitle4"
-                  type="n"
-                  placeholder="Track 4"
-                  className="bg-transparent outline:none focus:outline-none text-white"
-                />
-              </div>
-            </div>
-          </div> */}
           <div className="flex flex-col w-full justify-center text-white items-center space-y-4">
             <div className="flex flex-col bg-black opacity-95 py-1 mt-4 mb-2 w-2/12 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
               <button

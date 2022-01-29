@@ -12,8 +12,8 @@ function Login() {
     <div className="bg-gradient-to-b from-white to-teal-600 h-screen">
       <Header />
       <div className="flex flex-col items-center justify-center">
-        <div className="mt-24 items-center justify-center flex-col border-b-2 border-white">
-          <h1 className="text-5xl my-10 text-white">A V A S O U N D</h1>
+        <div className="mt-24 items-center justify-center flex-col border-b-2 border-white mb-4">
+          <h1 className="text-5xl my-8 text-white">A V A S O U N D</h1>
         </div>
         <Image
           width={50}

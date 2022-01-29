@@ -19,7 +19,6 @@ function Seller(props) {
   function showDownload() {
     setDownload(true);
   }
-
   return (
     <div className="flex items-center justify-between bg-gradient-to-r from-gray-500/[0.5] rounded-full mx-2 pl-2 pr-2">
       <div>
