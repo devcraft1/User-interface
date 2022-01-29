@@ -1,4 +1,3 @@
-import { UploadIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { TokenABI, TokenAddress } from "../../contracts/TokenContract";

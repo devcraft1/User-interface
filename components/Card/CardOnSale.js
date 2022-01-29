@@ -3,10 +3,15 @@ import Image from "next/image";
 import Seller from "./Seller";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import {
+  MarketplaceABI,
+  marketplaceAddress,
+} from "../../contracts/MarketplaceContract";
 
 function Card(props) {
   const {
     user,
+    Moralis,
     isWeb3Enabled,
     enableWeb3,
     isAuthenticated,
@@ -29,6 +34,32 @@ function Card(props) {
   }
   function dislikeItem() {
     setIsLiked(false);
+  }
+
+  async function contractCallPurchase(object) {
+    const web3Provider = await Moralis.enableWeb3();
+    const ethers = Moralis.web3Library;
+
+    const contract = new ethers.Contract(
+      marketplaceAddress,
+      MarketplaceABI,
+      web3Provider.getSigner()
+    );
+    contract.purchase(object.id).then((result) => {
+      alert("transaction successful");
+    });
+
+    // .createAlbum(
+    //   object.id,
+    //   object.get("recordCount"),
+    //   "4",
+    //   object.get("recordPrice"),
+    //   object.get("royaltyPrice")
+    // )
+  }
+
+  async function purchaseAlbum(object) {
+    contractCallPurchase(object);
   }
 
   return (
@@ -91,6 +122,7 @@ function Card(props) {
           <button
             className="text-sm text-black bg-teal-300 rounded-full px-2 hover:shadow-xl 
                                 active:text-white active:border-b-2 active:border-teal-300 active:bg-teal-700 border-b-2 border-black"
+            onClick={purchaseAlbum}
           >
             Purchase
           </button>
