@@ -1,7 +1,5 @@
-module.exports = {
-  images: {
-    domains: ["https://avatars.dicebear.com"],
-  },
+export const images = {
+  domains: ["https://avatars.dicebear.com", "https://ipfs.moralis.io"],
 };
 
 // const nextConfig = {

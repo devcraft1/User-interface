@@ -44,7 +44,7 @@ function swap() {
     <div className="bg-gradient-to-b from-white to-teal-600 h-screen overflow-hidden">
       <Head>
         <title>Avasound Wallet</title>
-        <link rel="icon" href="/Avax_logo.png" />
+        <link rel="icon" href="/avso.png" />
       </Head>
 
       <Header />

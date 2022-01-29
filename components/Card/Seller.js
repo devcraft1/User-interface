@@ -24,23 +24,14 @@ function Seller(props) {
     <div className="flex items-center justify-between bg-gradient-to-r from-gray-500/[0.5] rounded-full mx-2 pl-2 pr-2">
       <div>
         {download ? (
-          <DownloadIcon
+          <MusicNoteIcon
             onClick={showTicket}
             className="h-4 w-4 text-white "
             alt="digital download"
           />
         ) : (
-          ((
-            <TicketIcon onClick={showDownload} className="h-4 w-4 text-white" />
-          ),
-          (
-            <MusicNoteIcon
-              onClick={showDownload}
-              className="h-4 w-4 text-white"
-            />
-          ))
+          <TicketIcon onClick={showDownload} className="h-4 w-4 text-white" />
         )}
-        {/* <DownloadIcon className="h-4 w-4 text-white hover:text-red-600" alt="digital download"/> */}
       </div>
       <p
         className="font-bold text-sm text-white hover:text-teal-300 hover:cursor-pointer"

@@ -1,6 +1,11 @@
+import { UploadIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
+import UploadConfirmed from "./Messages/UploadConfirmed";
+import CoverDoneMsg from "./Messages/CoverDoneMsg";
+import MusicDoneMsg from "./Messages/MusicDoneMsg";
+import UploadStarted from "./Messages/UploadStarted";
 
 function Mintpage() {
   const { saveFile } = useMoralisFile();
@@ -34,7 +39,6 @@ function Mintpage() {
         alert("successfull");
         setUploadDone(true);
       });
-    setUploadDone(false);
   }
 
   // Take input from the user and create a new record
@@ -52,6 +56,7 @@ function Mintpage() {
     const recordPrice = document.getElementById("recordPrice").value;
     const recordFiles = document.getElementById("recordFiles").files[0];
     const royaltyPrice = document.getElementById("royaltyPrice").value;
+    const tracksIncluded = document.getElementById("tracksIncluded").value;
 
     let ipfsCover = "";
     let ipfsFiles = "";
@@ -65,8 +70,8 @@ function Mintpage() {
       );
       console.log("cover done, now uploading files");
       setIsUploading(false);
+      setCoverDone(true);
     }
-    setCoverDone(true);
     if (recordFiles) {
       await saveFile("recordFiles", recordFiles, { saveIPFS: true }).then(
         async (hash) => {
@@ -76,14 +81,15 @@ function Mintpage() {
       );
       console.log("done uploading");
       setCoverDone(false);
+      setMusicDone(true);
     }
-    setMusicDone(true);
 
     const metadata = {
       name: recordTitle,
       image: ipfsCover,
       description: {
         artist: recordArtist,
+        tracks: tracksIncluded,
         count: recordCount,
         price: recordPrice,
         royaltyprice: royaltyPrice,
@@ -104,6 +110,7 @@ function Mintpage() {
     const album = new Album();
     album.set("recordTitle", recordTitle);
     album.set("recordArtist", recordArtist);
+    album.set("tracksIncluded", tracksIncluded);
     album.set("recordCover", ipfsCover);
     album.set("recordCount", parseInt(recordCount));
     album.set("recordPrice", parseFloat(recordPrice));
@@ -150,8 +157,17 @@ function Mintpage() {
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
+              <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
+                <input
+                  name="tracksIncluded"
+                  id="tracksIncluded"
+                  type="text"
+                  placeholder="Tracks included"
+                  className="bg-transparent outline:none focus:outline-none text-white text-center"
+                />
+              </div>
               <div className="mt-4"></div>
-              <p>Upload Cover Artwork</p>
+              <p>Cover Artwork</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
                   type="file"
@@ -170,7 +186,7 @@ function Mintpage() {
                   type="n"
                   name="recordCount"
                   id="recordCount"
-                  placeholder="Number of Records"
+                  placeholder="Number of Copies"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
@@ -179,7 +195,7 @@ function Mintpage() {
                   name="recordPrice"
                   id="recordPrice"
                   type="n"
-                  placeholder="Price in AVAX"
+                  placeholder="Avax per Copy"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
@@ -188,13 +204,13 @@ function Mintpage() {
                   name="royaltyPrice"
                   id="royaltyPrice"
                   type="n"
-                  placeholder="Royalty Price"
+                  placeholder="Avax per Royaltyshare"
                   className="bg-transparent outline:none focus:outline-none text-white text-center"
                 />
               </div>
               <div className="mt-4"></div>
 
-              <p>Upload MP3 & WAV files (ZIP)</p>
+              <p>MP3 / ZIP</p>
               <div className="w-9/12 flex flex-col bg-black opacity-95 px-4 py-1 max-w-2xl shadow-xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
                 <input
                   name="recordFiles"
@@ -260,15 +276,15 @@ function Mintpage() {
             <div className="flex flex-col bg-black opacity-95 py-1 mt-4 mb-2 w-2/12 shadow-2xl border-2 border-teal-300/50 z-50 rounded-full hover:border-teal-200 hover:text-teal-300">
               <button
                 onClick={createRecord}
-                className="bg-transparent outline:none focus:outline-none text-gray-400 hover:text-teal-300"
+                className=" flex flex-row items-center justify-center bg-transparent outline:none focus:outline-none text-gray-400 hover:text-teal-300"
               >
                 Mint Items
               </button>
             </div>
-            {isUploading && <div>Upload started</div>}
-            {coverDone && <div>Cover uploaded</div>}
-            {musicDone && <div>Music uploaded</div>}
-            {uploadDone && <div>Upload successful</div>}
+            {isUploading && <UploadStarted />}
+            {coverDone && <CoverDoneMsg />}
+            {musicDone && <MusicDoneMsg />}
+            {uploadDone && <UploadConfirmed />}
           </div>
         </div>
       </div>

@@ -33,11 +33,11 @@ function Main() {
   // }, [spotifyApi, playlistId])
 
   return (
-    <div className="flex flex-col items-center p-12 mx-auto">
+    <div className="flex flex-col w-full items-center p-12 mx-auto">
       <section
-        className={`sticky flex flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b border-teal-600 text-gray-800 padding-4 mb-8`}
+        className={`sticky flex w-8/12 flex-col justify-center items-center space-x-8 bg-transparent h-12 mx-48 border-b border-teal-600 text-gray-800 padding-4 mb-8`}
       >
-        <h1 className="text-lg mb-8">MARKETPLACE</h1>
+        <h1 className="text-lg mb-8">Marketplace</h1>
       </section>
       <Marketplace />
     </div>

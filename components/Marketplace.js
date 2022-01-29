@@ -1,36 +1,41 @@
-import Image from "next/image";
-import Card from "./Card/Card";
+import { useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
+import CardOnSale from "./Card/CardOnSale";
 import Bottom from "./Main/Bottom";
-import tokenDetails from "../contracts/TokenContract";
-import marketplaceDetails from "../contracts/MarketplaceContract";
 import Sponsors from "./Main/Sponsors";
 
-// const { MarketplaceABI, marketplaceAddress } = marketplaceDetails;
-// const { TokenABI, TokenAddress } = tokenDetails;
-
-// console.log(MarketplaceABI, TokenABI);
-
 function Marketplace() {
+  const {
+    user,
+    Moralis,
+    isWeb3Enabled,
+    enableWeb3,
+    isAuthenticated,
+    isWeb3EnableLoading,
+  } = useMoralis();
+
+  const [albums, setAlbums] = useState([]);
+  useEffect(() => {
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
+
+    const Album = Moralis.Object.extend("Album");
+    const query = new Moralis.Query(Album);
+    query.notEqualTo("owner", "notactive");
+    // query.equalTo("owner", user.get("ethAddress"));
+
+    query.find().then((results) => {
+      setAlbums(results);
+    });
+  }, [isAuthenticated, isWeb3Enabled, user]);
+
   return (
-    <div className="">
-      <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+    <div className="flex w-full flex-col items-center">
+      <div className="flex w-9/12 flex-wrap justify-center mt-10">
+        {albums.map((data) => (
+          <CardOnSale data={data} />
+        ))}
       </div>
-      <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-      <div className="flex flex-wrap justify-evenly mx-auto space-x-16 mt-10">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+
       <Bottom />
       <Sponsors />
 

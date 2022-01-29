@@ -20,14 +20,13 @@ function Profile() {
     isWeb3EnableLoading,
   } = useMoralis();
 
-  const email = user.get("email");
-  const socials = user.get("url");
-
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
+  const email = user.get("email");
+  const socials = user.get("url");
   const [editModal, setEditModal] = useState(false);
 
   function handleClick() {

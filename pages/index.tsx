@@ -22,7 +22,7 @@ export default function Home() {
     <div className="bg-gradient-to-b from-white to-teal-600  h-screen overflow-hidden">
       <Head>
         <title>AVASOUND</title>
-        <link rel="icon" href="/Avax_logo.png" />
+        <link rel="icon" href="/avso.png" />
       </Head>
       <Header />
       <main className='flex overflow-y-scroll h-screen scrollbar-hide overflow-hidden"'>

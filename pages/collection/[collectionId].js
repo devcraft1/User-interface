@@ -15,7 +15,7 @@ function Usercollection() {
     <div>
       <Head>
         <title>Avasound Collection</title>
-        <link rel="icon" href="/Avax_logo.png" />
+        <link rel="icon" href="/avso.png" />
       </Head>
       <Collection />
     </div>
