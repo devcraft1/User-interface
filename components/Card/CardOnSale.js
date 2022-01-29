@@ -53,7 +53,8 @@ function Card(props) {
         <Image
           width={175}
           height={175}
-          src={props.data.get("recordCover") || "/avso.png"}
+          // src={props.data.get("recordCover") || "/avso.png"}
+          src={"/avso.png"}
           alt="Item"
           className="rounded-xl shadow-xl"
         />
