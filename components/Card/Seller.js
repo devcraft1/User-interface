@@ -32,6 +32,7 @@ function Seller(props) {
         ) : (
           <TicketIcon onClick={showDownload} className="h-4 w-4 text-white" />
         )}
+        {/* <DownloadIcon className="h-4 w-4 text-white hover:text-red-600" alt="digital download"/> */}
       </div>
       <p
         className="font-bold text-sm text-white hover:text-teal-300 hover:cursor-pointer"
