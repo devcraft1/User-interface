@@ -39,26 +39,26 @@ function CardOnSale(props) {
   async function contractCallPurchase() {
     const web3Provider = await Moralis.enableWeb3();
     const ethers = Moralis.web3Library;
+    // const option = { value: (props.data.recordPrice ** 18).toString() };
+    const options = {
+      value: ethers.utils.parseEther(props.data.recordPrice.toString()),
+    };
+    console.log(options);
 
     const contract = new ethers.Contract(
       marketplaceAddress,
       MarketplaceABI,
       web3Provider.getSigner()
     );
-    contract.purchaseToken(props.data.listing_id, "1").then((result) => {
-      alert("transaction successful");
-    });
-
-    // .createAlbum(
-    //   object.id,
-    //   object.get("recordCount"),
-    //   "4",
-    //   object.get("recordPrice"),
-    //   object.get("royaltyPrice")
-    // )
+    contract
+      .purchaseToken(props.data.listing_id, "1", options)
+      .then((result) => {
+        alert("transaction successful");
+      });
   }
 
-  async function purchaseAlbum() {
+  function purchaseAlbum() {
+    console.log(props.data.recordPrice.toString());
     contractCallPurchase();
   }
 
@@ -84,8 +84,8 @@ function CardOnSale(props) {
         <Image
           width={175}
           height={175}
-          // src={props.data.get("recordCover") || "/avso.png"}
-          src={"/avso.png"}
+          src={props.data.recordCover || "/avso.png"}
+          // src={"/avso.png"}
           alt="Item"
           className="rounded-xl shadow-xl"
         />

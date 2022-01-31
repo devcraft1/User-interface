@@ -40,8 +40,13 @@ function Mintpage() {
       )
       .then((result) => {
         contract.setApprovalForAll(marketplaceAddress, true);
-        alert("successful, please confirm direct listing via metamask");
+        alert(
+          "successful, please confirm direct approval for marketplace via metamask"
+        );
         setUploadDone(true);
+        alert(
+          "You find the item in your collection. From there you'll be able to list it on the marketplace"
+        );
       });
   }
   async function createRecord() {

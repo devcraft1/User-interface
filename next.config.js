@@ -1,6 +1,12 @@
-const images = {
-  domains: ["https://ipfs.moralis.io"],
+module.exports = {
+  images: {
+    domains: ["ipfs.moralis.io"],
+  },
 };
+
+// export const images = {
+//   domains: [],
+// };
 
 // const nextConfig = {
 //   modules: true,
@@ -9,4 +15,4 @@ const images = {
 //   },
 // };
 
-module.export = images;
+// module.export = images;
