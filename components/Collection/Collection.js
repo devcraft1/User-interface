@@ -17,7 +17,7 @@ function Collection() {
   } = useMoralis();
 
   const [userProfile, setUserProfile] = useState();
-  const [albums, setAlbums] = useState([]);
+  const [items, setItems] = useState([]);
   // console.log(user.get("ethAddress"));
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function Collection() {
       const query = new Moralis.Query(Album);
       query.equalTo("owner", user.get("ethAddress"));
       query.find().then((results) => {
-        setAlbums(results);
+        setItems(results);
       });
     }
   }, [isAuthenticated, isWeb3Enabled, user]);
@@ -49,8 +49,8 @@ function Collection() {
           </section>
 
           <div className="flex w-9/12 flex-wrap justify-center mt-10">
-            {albums.map((data) => (
-              <Card data={data} />
+            {items.map((data, index) => (
+              <Card data={data} key={index} />
             ))}
           </div>
         </div>

@@ -37,7 +37,7 @@ function Seller(props) {
         className="font-bold text-sm text-white hover:text-teal-300 hover:cursor-pointer"
         onClick={handleClick}
       >
-        {props.userProfile ? props.userProfile.get("username") : ""}
+        {props.userProfile}
       </p>
     </div>
   );

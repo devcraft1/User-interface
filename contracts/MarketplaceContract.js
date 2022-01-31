@@ -1,6 +1,10 @@
 export const MarketplaceABI = [
-  "function purchaseToken(uint256 listingId, uint256 amount) external payable nonReentrant",
+  "function listToken(address contractAddress, uint256 tokenId, uint256 amount, uint256 price) public nonReentrant",
+  "function purchaseToken(uint256 listingId, uint256 amount) public payable nonReentrant",
 ];
+
+export const marketplaceAddress = "0x53B499CE8191ddDcE9b1F4Bc07a404c06f9B1bE7";
+
 //   {
 //     inputs: [
 //       {
@@ -344,8 +348,6 @@ export const MarketplaceABI = [
 //     type: "function",
 //   },
 // ];
-
-export const marketplaceAddress = "0xA5B7cfA7a4f351354677CFE7a5694b7023fe4175c";
 
 // const marketplaceDetails = { MarketplaceABI, marketplaceAddress };
 

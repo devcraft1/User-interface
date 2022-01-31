@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useMoralisFile, useMoralis } from "react-moralis";
 import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
+import {
+  MarketplaceABI,
+  marketplaceAddress,
+} from "../../contracts/MarketplaceContract";
 import UploadConfirmed from "./Messages/UploadConfirmed";
 import CoverDoneMsg from "./Messages/CoverDoneMsg";
 import MusicDoneMsg from "./Messages/MusicDoneMsg";
@@ -35,7 +39,8 @@ function Mintpage() {
         object.get("royaltyPrice")
       )
       .then((result) => {
-        alert("successful");
+        contract.setApprovalForAll(marketplaceAddress, true);
+        alert("successful, please confirm direct listing via metamask");
         setUploadDone(true);
       });
   }

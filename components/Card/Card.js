@@ -9,6 +9,11 @@ import Image from "next/image";
 import Seller from "./Seller";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import {
+  MarketplaceABI,
+  marketplaceAddress,
+} from "../../contracts/MarketplaceContract";
+import { TokenABI, TokenAddress } from "../../contracts/TokenContract";
 // import Moralis from "moralis/types";
 // import Description from "./Description";
 // import Purchase from "./Purchase";
@@ -51,6 +56,33 @@ function Card(props) {
     setDownloaded(true);
   }
 
+  async function contractCallListItem() {
+    const web3Provider = await Moralis.enableWeb3();
+    const ethers = Moralis.web3Library;
+
+    const contract = new ethers.Contract(
+      marketplaceAddress,
+      MarketplaceABI,
+      web3Provider.getSigner()
+    );
+    contract
+      .listToken(
+        TokenAddress,
+        props.data.get("token_id"),
+        props.data.get("recordCount"),
+        props.data.get("recordPrice")
+      )
+      .then((result) => {
+        props.data.set("listed", true);
+        props.data.save();
+        alert("successful");
+      });
+  }
+
+  function listItem() {
+    contractCallListItem();
+  }
+
   return (
     <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 rounded-xl shadow-xl mr-4 ml-4 mb-4 mt-4">
       <div className="border-b w-48 flex justify-between items-center p-2">
@@ -80,7 +112,7 @@ function Card(props) {
         />
       </div>
       <div className="flex flex-col w-64 py-1">
-        <Seller userProfile={userProfile} />
+        <Seller userProfile={user.getUsername()} />
 
         <div className="py-4 text-sm">
           <h1 className="pl-4 font-semibold text-white">
@@ -90,20 +122,8 @@ function Card(props) {
             {props.data.get("tracksIncluded")}
           </p>
         </div>
-        <div className="text-gray-800 items-center mx-2 mt-4 pl-2 pr-4">
+        <div className="text-gray-800 items-center mx-2 mt-4 pl-2 pr-2">
           <div className="flex flex-row items-center justify-between">
-            <p className="flex items-center justify-items-center space-x-2">
-              {/* <div className="flex flex-row items-center pr-2">
-                {props.data.get("recordPrice")} AVAX
-              </div> */}
-              <Image
-                width={15}
-                height={15}
-                src={"/avax1.png"}
-                alt="Item"
-                className="rounded-xl shadow-xl"
-              />
-            </p>
             {!downloaded ? (
               <DownloadIcon
                 onClick={downloadItems}
@@ -112,6 +132,13 @@ function Card(props) {
             ) : (
               <CheckCircleIcon onClick={downloadItems} className="h-5 w-5" />
             )}
+            <button
+              className="text-sm text-black bg-teal-300 rounded-full px-2 hover:shadow-xl 
+                                active:text-white active:border-b-2 active:border-teal-300 active:bg-teal-700 border-b-2 border-black"
+              onClick={listItem}
+            >
+              List
+            </button>
           </div>
         </div>
       </div>
