@@ -9,7 +9,7 @@ const ERC20Balances = (props) => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <h1 className="flex flex-col items-center">Token Balances</h1>
+      {/* <h1 className="flex flex-col items-center">Token Balances</h1> */}
       {data
         ? data.map((element, index) => (
             <div

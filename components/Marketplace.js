@@ -27,6 +27,7 @@ function Marketplace() {
       token_id: "0x7595656ba326543413e5288e6aAef08b60699A17",
     }).then((results) => {
       setAlbums(results);
+      console.log(results);
     });
   }, [isAuthenticated, isWeb3Enabled, user]);
 

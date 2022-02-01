@@ -4,6 +4,8 @@ import Header from "../Main/Header";
 import Sidebar from "../Main/Sidebar";
 import { MoralisContext, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import { TokenAddress } from "../../contracts/TokenContract";
+import Bottom from "../Main/Bottom";
 
 function Collection() {
   const {
@@ -17,6 +19,7 @@ function Collection() {
 
   const [userProfile, setUserProfile] = useState();
   const [items, setItems] = useState([]);
+  const [purchased, setPurchased] = useState([]);
 
   const [openCreated, setOpenCreated] = useState(true);
   const [openPurchased, setOpenPurchased] = useState(false);
@@ -24,13 +27,11 @@ function Collection() {
   function openBought() {
     setOpenPurchased(true);
     setOpenCreated(false);
-    console.log("opened purchased");
   }
 
   function openMinted() {
     setOpenCreated(true);
     setOpenPurchased(false);
-    console.log("opened created");
   }
 
   useEffect(() => {
@@ -42,11 +43,22 @@ function Collection() {
       const Album = Moralis.Object.extend("Album");
       const query = new Moralis.Query(Album);
       query.equalTo("owner", user.get("ethAddress"));
-      query.find().then((results) => {
-        setItems(results);
-      });
+
+      if (openCreated) {
+        query.find().then((results) => {
+          setItems(results);
+        });
+      } else {
+        // setItems([]);
+        Moralis.Cloud.run("getDownloadTokensPurchased", {
+          owner: user.get("ethAddress"),
+          token_address: TokenAddress.toLowerCase(),
+        }).then((results) => {
+          setPurchased(results);
+        });
+      }
     }
-  }, [isAuthenticated, isWeb3Enabled, user]);
+  }, [isAuthenticated, isWeb3Enabled, user, openCreated, openPurchased]);
 
   return (
     <div className="bg-gradient-to-b from-white to-teal-600 h-screen overflow-hidden">
@@ -105,11 +117,12 @@ function Collection() {
           )}
           {openPurchased && (
             <div className="flex w-9/12 flex-wrap justify-center mt-10">
-              {items.map((data, index) => (
+              {purchased.map((data, index) => (
                 <CardPurchased data={data} key={index} />
               ))}
             </div>
           )}
+          <Bottom />
         </div>
       </main>
     </div>

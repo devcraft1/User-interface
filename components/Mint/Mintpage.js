@@ -29,13 +29,15 @@ function Mintpage() {
       TokenABI,
       web3Provider.getSigner()
     );
-    console.log(contract);
+
+    const price = ethers.utils.parseEther(object.get("recordPrice").toString());
+
     contract
       .createAlbum(
         object.id,
         object.get("recordCount"),
         "4",
-        object.get("recordPrice"),
+        price,
         object.get("royaltyPrice")
       )
       .then((result) => {

@@ -85,7 +85,6 @@ function CardOnSale(props) {
           width={175}
           height={175}
           src={props.data.recordCover || "/avso.png"}
-          // src={"/avso.png"}
           alt="Item"
           className="rounded-xl shadow-xl"
         />
@@ -99,7 +98,7 @@ function CardOnSale(props) {
               {props.data.recordArtist}
             </h1>
             <p className="pl-4 text-white text-xs mr-4 items-center justify-center">
-              {props.data.recordCount} Records
+              {props.data.amount} Records
             </p>
           </div>
           <div className="pl-4 text-white">{props.data.tracksIncluded}</div>
@@ -113,7 +112,6 @@ function CardOnSale(props) {
               width={15}
               height={15}
               src={"/avax1.png"}
-              // src={props.data.recordCover}
               alt="Item"
               className="rounded-xl shadow-xl"
             />

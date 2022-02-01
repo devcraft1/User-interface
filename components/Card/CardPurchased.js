@@ -30,7 +30,7 @@ function Card(props) {
   const [downloaded, setDownloaded] = useState();
   const [download, setDownload] = useState(true);
 
-  const songFiles = props.data.get("recordFiles");
+  const songFiles = props.data.recordFiles;
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -83,7 +83,7 @@ function Card(props) {
     <div className="w-64 h-96 flex flex-col items-center border-r border-b-2 rounded-xl shadow-xl mr-4 ml-4 mb-4 mt-4">
       <div className="border-b w-48 flex justify-between items-center p-2">
         <h1 className="tracking-wider text-gray-800">
-          {props.data.get("recordTitle")}
+          {props.data.recordTitle}
         </h1>
         <BadgeCheckIcon className="h-5 w-5" />
       </div>
@@ -91,7 +91,7 @@ function Card(props) {
         <Image
           width={175}
           height={175}
-          src={props.data.get("recordCover") || "/avso.png"}
+          src={props.data.recordCover || "/avso.png"}
           //   src={"/avso.png"}
           alt="Item"
           className="rounded-xl shadow-xl"
@@ -102,10 +102,10 @@ function Card(props) {
 
         <div className="py-4 text-sm">
           <h1 className="pl-4 font-semibold text-white">
-            {props.data.get("recordArtist")}
+            {props.data.recordArtist}
           </h1>
           <p className="pl-4 justify-between text-white">
-            {props.data.get("tracksIncluded")}
+            {props.data.tracksIncluded}
           </p>
         </div>
         <div className="text-gray-800 items-center mx-2 mt-4 pl-2 pr-2">

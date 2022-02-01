@@ -64,12 +64,17 @@ function Card(props) {
       MarketplaceABI,
       web3Provider.getSigner()
     );
+
+    const price = ethers.utils.parseEther(
+      props.data.get("recordPrice").toString()
+    );
     contract
       .listToken(
         TokenAddress,
         props.data.get("token_id"),
         props.data.get("recordCount"),
-        props.data.get("recordPrice")
+        // props.data.get("recordPrice")
+        price
       )
       .then((result) => {
         props.data.set("listed", true);
