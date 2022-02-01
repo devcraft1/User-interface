@@ -11,7 +11,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 
-function Profile() {
+function Profile(props) {
   const {
     user,
     isWeb3Enabled,
@@ -20,13 +20,24 @@ function Profile() {
     isWeb3EnableLoading,
   } = useMoralis();
 
+  const [userProfile, setUserProfile] = useState();
+  const [userEmail, setUserEmail] = useState();
+  const [userSocials, setUserSocials] = useState();
+
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled]);
 
-  const email = user.get("email");
-  const socials = user.get("url");
+    if (user) {
+      setUserProfile(user);
+      setUserEmail(user.get("email"));
+      setUserSocials(user.get("url"));
+    }
+  }, [isAuthenticated, isWeb3Enabled, user]);
+
+  // const email = user.get("email");
+  // const socials = user.get("url");
+
   const [editModal, setEditModal] = useState(false);
 
   function handleClick() {
@@ -50,7 +61,7 @@ function Profile() {
           )}
         </div>
         <div className="flex flex-col items-center text-gray-800 space-y-2 mb-4 text-sm">
-          {email ? (
+          {userEmail ? (
             <div
               className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-white"
               onClick={copyEmail}
@@ -62,14 +73,14 @@ function Profile() {
           ) : (
             ""
           )}
-          {socials ? (
+          {userSocials ? (
             <div
               className="flex flex-row items-center justify-between space-y-2 hover:cursor-pointer active:text-white"
-              onClick={() => window.open(socials)}
+              onClick={() => window.open(userSocials)}
             >
               <CursorClickIcon className="h-3 w-3 mr-1" />
 
-              {socials}
+              {userSocials}
             </div>
           ) : (
             ""

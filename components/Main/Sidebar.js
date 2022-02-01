@@ -14,7 +14,8 @@ export default function Sidebar() {
   const userId = user ? user.get("ethAddress") : "";
 
   function openProfile() {
-    router.push(`/profile/${userId}`);
+    // router.push(`/profile/${userId}`);
+    router.push("/userprofile");
   }
   function openMarketplace() {
     router.push(`/`);
